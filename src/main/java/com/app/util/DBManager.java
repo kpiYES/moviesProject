@@ -19,6 +19,6 @@ public class DBManager {
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException("Couldn't get connection", e);
         }
-return connection;
+        return connection;
     }
 }

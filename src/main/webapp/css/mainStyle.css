@@ -1,0 +1,85 @@
+body {
+    font-family: "Franklin Gothic Demi", "Goudy Stout", serif;
+    font-style: normal;
+    font-weight: bold;
+    background-color: antiquewhite;
+    margin: 0px ;
+    align-content: center;
+}
+
+ul,cl,dl{
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p{
+    margin-top: 0;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+a img{
+    border: none;
+}
+
+a:link {
+    color: midnightblue;
+    text-decoration: underline;
+}
+
+    a:hover, a:active, a:focus{
+        text-decoration: none;
+}
+
+    .container{
+        width: 1000px;
+        background-color: darkgrey;
+        margin: 0 auto;
+        height: 800px;
+    }
+
+    .header{
+        background-color: bisque;
+    }
+
+    .sidebar1{
+        float: left;
+        width: 25%;
+        padding-bottom: 10px;
+        margin: 10px;
+    }
+
+    .content{
+        padding:10px 0;
+        width: 65%;
+        float: left;
+    }
+
+    .logo{
+        text-align: left;
+        padding: 20px;
+        float: left;
+        width: 10px;
+        height: 10px;
+    }
+
+
+
+    .search_button{
+        border-radius: 6px;
+        border: 1px solid ;
+        display: inline-block;
+        font-size: 15px;
+        font-weight: bold;
+        padding: 6px 24px;
+        text-decoration: none;
+
+    }
+    .search_button:hover{
+        cursor: pointer;
+        background-color: lightblue;
+    }
+    .search_button:active{
+        position:relative;
+        top:1px;
+    }

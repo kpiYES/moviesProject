@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Library</title>
+    <title>YourFavoriteMovies</title>
     <link href="css/indexStyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -20,14 +20,14 @@
 
 <div>
     <p class="text">
-                        We glad to see you in our site!
+        We glad to see you in our site!
         You can find here interesting book, download or read the one online.
     </p>
 </div>
 
 <div class="title">
     <p> Enter your name </p>
-    <form class="login" method="post" action="views/mainPage.jsp">
+    <form class="login" method="post" action="main">
         <input type="text" placeholder="Username" name="username" size="20">
         <input type="submit" value="Submit">
     </form>

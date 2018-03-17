@@ -2,11 +2,14 @@ package com.app.model;
 
 public class Director {
 
-private String name;
+    private String name;
 
-public Director(String name){
-    this.name = name;
-}
+    public Director() {
+    }
+
+    public Director(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;
