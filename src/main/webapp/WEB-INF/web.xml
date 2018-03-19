@@ -6,12 +6,12 @@
 
 
     <servlet>
-        <servlet-name>ListOfDirectors</servlet-name>
+        <servlet-title>ListOfDirectors</servlet-title>
         <servlet-class>com.app.controller.ListOfDirectors</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>ListOfDirectors</servlet-name>
+        <servlet-title>ListOfDirectors</servlet-title>
         <url-pattern>/main</url-pattern>
     </servlet-mapping>
 

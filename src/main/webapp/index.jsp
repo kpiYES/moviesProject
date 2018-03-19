@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>YourFavoriteMovies</title>
+    <movie>YourFavoriteMovies</movie>
     <link href="css/indexStyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -25,10 +25,10 @@
     </p>
 </div>
 
-<div class="title">
-    <p> Enter your name </p>
+<div class="movie">
+    <p> Enter your title </p>
     <form class="login" method="post" action="main">
-        <input type="text" placeholder="Username" name="username" size="20">
+        <input type="text" placeholder="Username" title="username" size="20">
         <input type="submit" value="Submit">
     </form>
 </div>

@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>YourFavoriteMovies</title>
+    <movie>YourFavoriteMovies</movie>
     <link href="../css/mainStyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -28,10 +28,10 @@
         </div>
 
         <div class="searching_form">
-            <form name="search_form" method="post">
-                <input type="text" name="search_String value=" size="110"/>
-                <input class="search_button" type="submit" value="Search" name="search_button"/>
-                <select name="search_option">
+            <form title="search_form" method="post">
+                <input type="text" title="search_String value=" size="110"/>
+                <input class="search_button" type="submit" value="Search" title="search_button"/>
+                <select title="search_option">
                     <option>Title</option>
                     <option>Director</option>
                 </select>

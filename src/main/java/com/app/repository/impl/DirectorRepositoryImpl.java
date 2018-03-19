@@ -14,7 +14,7 @@ import java.util.List;
 
 public class DirectorRepositoryImpl implements DirectorRepository {
 
-    private static final String Query = "SELECT DISTINCT directors  FROM moviesproject.movies ORDER BY directors";
+    private static final String Query = "SELECT DISTINCT director  FROM moviesproject.movies ORDER BY director";
 
     @Override
     public List<Director> getDirectorList() {
@@ -26,7 +26,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                String directorName = resultSet.getString("directors");
+                String directorName = resultSet.getString("director");
                 directors.add(new Director(directorName));
             }
         } catch (SQLException e) {
