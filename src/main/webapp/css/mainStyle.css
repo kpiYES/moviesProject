@@ -1,8 +1,8 @@
 body {
-    font-family: "Franklin Gothic Demi", "Goudy Stout", serif;
+    font-family: serif;
     font-style: normal;
-    font-weight: bold;
-    background-color: antiquewhite;
+    font-weight: 400;
+    background-color: aliceblue;
     margin: 0px ;
     align-content: center;
 }
@@ -31,15 +31,16 @@ a:link {
         text-decoration: none;
 }
 
-    .container{
-        width: 1000px;
-        background-color: darkgrey;
-        margin: 0 auto;
-        height: 800px;
-    }
+.container{
+    width: 1000px;
+    background-color: whitesmoke;
+    margin: 0 auto;
+    height: 300px;
+}
+
 
     .header{
-        background-color: bisque;
+        background-color: whitesmoke;
     }
 
     .sidebar1{
@@ -82,4 +83,9 @@ a:link {
     .search_button:active{
         position:relative;
         top:1px;
+    }
+
+    .search_form{
+        padding: 20px;
+        text-align: left;
     }

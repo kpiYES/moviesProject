@@ -27,7 +27,7 @@
 
 <div class="movie">
     <p> Enter your title </p>
-    <form class="login" method="post" action="main">
+    <form class="login" method="get" action="main">
         <input type="text" placeholder="Username" title="username" size="20">
         <input type="submit" value="Submit">
     </form>

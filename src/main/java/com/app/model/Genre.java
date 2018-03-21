@@ -2,13 +2,24 @@ package com.app.model;
 
 public class Genre {
 
+    private int id;
+
     private String typeOfGenre;
 
     public Genre() {
     }
 
-    public Genre(String typeOfGenre) {
+    public Genre(int id,String typeOfGenre) {
+        this.id=id;
         this.typeOfGenre = typeOfGenre;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTypeOfGenre() {
@@ -19,7 +30,6 @@ public class Genre {
         this.typeOfGenre = typeOfGenre;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -27,18 +37,22 @@ public class Genre {
 
         Genre genre = (Genre) o;
 
+        if (getId() != genre.getId()) return false;
         return getTypeOfGenre() != null ? getTypeOfGenre().equals(genre.getTypeOfGenre()) : genre.getTypeOfGenre() == null;
     }
 
     @Override
     public int hashCode() {
-        return getTypeOfGenre() != null ? getTypeOfGenre().hashCode() : 0;
+        int result = getId();
+        result = 31 * result + (getTypeOfGenre() != null ? getTypeOfGenre().hashCode() : 0);
+        return result;
     }
 
     @Override
     public String toString() {
         return "Genre{" +
-                "typeOfGenre='" + typeOfGenre + '\'' +
+                "id=" + id +
+                ", typeOfGenre='" + typeOfGenre + '\'' +
                 '}';
     }
 }

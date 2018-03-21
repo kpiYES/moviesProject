@@ -10,12 +10,11 @@ import java.util.List;
 
 public class DirectorServiceImpl implements DirectorService {
 
-
     private DirectorRepository directorRepository;
 
     public DirectorServiceImpl() {
 
-        this.directorRepository = new DirectorRepositoryImpl();
+        directorRepository = new DirectorRepositoryImpl();
     }
 
     @Override

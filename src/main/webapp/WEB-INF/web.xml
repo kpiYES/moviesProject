@@ -5,15 +5,16 @@
          version="3.1">
 
 
-    <servlet>
-        <servlet-title>ListOfDirectors</servlet-title>
-        <servlet-class>com.app.controller.ListOfDirectors</servlet-class>
-    </servlet>
+    <!--<servlet>-->
+        <!--<servlet-name>ListOfDirectors</servlet-name>-->
+        <!--<servlet-class>com.app.controller.ListOfDirectors</servlet-class>-->
+    <!--</servlet>-->
 
-    <servlet-mapping>
-        <servlet-title>ListOfDirectors</servlet-title>
-        <url-pattern>/main</url-pattern>
-    </servlet-mapping>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>ListOfDirectors</servlet-name>-->
+        <!--<url-pattern>/main</url-pattern>-->
+    <!--</servlet-mapping>-->
+
 
 
 </web-app>
