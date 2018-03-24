@@ -1,0 +1,18 @@
+body{
+
+    background-color: antiquewhite;
+    box-sizing: border-box;
+    font-family: serif;
+    padding: 0;
+}
+
+.form {
+    width: 400px;
+    min-width: 400px;
+    height: 500px;
+    margin: 50px auto;
+    background: #3B2E42;
+    border-radius: 15px;
+    padding: 20px;
+    padding-left: 100px;
+}

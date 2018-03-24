@@ -15,13 +15,14 @@ import java.util.List;
 public class MovieRepositoryImpl implements MovieRepository {
 
 
+
     @Override
     public List<Movie> getMovieList() {
-        String Query = " SELECT * FROM moviesproject.movie ORDER BY movie.title";
+        String query= " SELECT * FROM moviesproject.movie ORDER BY movie.title";
         List<Movie> movies = new ArrayList<>();
 
         try (Connection connection = DBManager.getConnect();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query)
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
         ) {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -44,14 +45,15 @@ public class MovieRepositoryImpl implements MovieRepository {
     @Override
     public List<Movie> getMovieListByGenre(Genre genre) {
         List<Movie> movies = new ArrayList<>();
-        String Query = "SELECT m.* " +
+        String query = "SELECT m.* " +
                 "FROM moviesproject.movie m INNER JOIN moviesproject.movie_genre g " +
                 "ON m.id = g.movie_id " +
-                "WHERE g.genre_id = " + genre.getId() +
+                "WHERE g.genre_id = ?"+
                 " ORDER BY m.title";
         try (Connection connection = DBManager.getConnect();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
+           preparedStatement.setInt(1,genre.getId());
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
 
@@ -68,6 +70,6 @@ public class MovieRepositoryImpl implements MovieRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Couldn't get list of movies  from table 'movie'", e);
         }
-        return null;
+        return movies;
     }
 }

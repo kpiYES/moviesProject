@@ -16,6 +16,17 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public List<Genre> getListOfGenre() {
-        return genreRepository.getGenreList();
+        return genreRepository.getAll();
+    }
+
+    @Override
+    public int addGenre(Genre genre) {
+        return genreRepository.putGenre(genre);
+
+    }
+
+    @Override
+    public int deleteGenre(Genre genre) {
+        return genreRepository.removeGenre(genre);
     }
 }

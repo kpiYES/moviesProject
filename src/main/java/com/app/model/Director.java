@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Director {
 
+    private int id;
     private String name;
     private LocalDate dayOfBirth;
     private String image;
@@ -12,10 +13,19 @@ public class Director {
     };
 
 
-    public Director(String name, LocalDate dayOfBirth, String imagine) {
+    public Director(int id, String name, LocalDate dayOfBirth, String imagine) {
+        this.id = id;
         this.name = name;
         this.dayOfBirth = dayOfBirth;
         this.image = image;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -38,8 +48,8 @@ public class Director {
         return image;
     }
 
-    public void setImage(String imagine) {
-        this.image = imagine;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
@@ -49,6 +59,7 @@ public class Director {
 
         Director director = (Director) o;
 
+        if (getId() != director.getId()) return false;
         if (getName() != null ? !getName().equals(director.getName()) : director.getName() != null) return false;
         if (getDayOfBirth() != null ? !getDayOfBirth().equals(director.getDayOfBirth()) : director.getDayOfBirth() != null)
             return false;
@@ -57,7 +68,8 @@ public class Director {
 
     @Override
     public int hashCode() {
-        int result = getName() != null ? getName().hashCode() : 0;
+        int result = getId();
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
         result = 31 * result + (getDayOfBirth() != null ? getDayOfBirth().hashCode() : 0);
         result = 31 * result + (getImage() != null ? getImage().hashCode() : 0);
         return result;
@@ -66,9 +78,10 @@ public class Director {
     @Override
     public String toString() {
         return "Director{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", dayOfBirth=" + dayOfBirth +
-                ", imagine='" + image + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }
