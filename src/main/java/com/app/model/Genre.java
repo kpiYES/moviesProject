@@ -2,24 +2,24 @@ package com.app.model;
 
 public class Genre {
 
-    private int id;
+    private Long id;
 
     private String typeOfGenre;
 
     public Genre() {
     }
 
-    public Genre(int id, String typeOfGenre) {
+    public Genre(Long id, String typeOfGenre) {
         this.id = id;
         this.typeOfGenre = typeOfGenre;
     }
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -44,7 +44,7 @@ public class Genre {
 
     @Override
     public int hashCode() {
-        int result = getId();
+        int result = Math.toIntExact(getId());
         result = 31 * result + (getTypeOfGenre() != null ? getTypeOfGenre().hashCode() : 0);
         return result;
     }

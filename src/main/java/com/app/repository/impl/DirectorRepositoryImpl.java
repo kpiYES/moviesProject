@@ -76,7 +76,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
             id = preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException("Couldn't delete any row in 'directors'", e);
+            throw new RuntimeException("Couldn't remove any row in 'directors'", e);
         }
 
         return id;

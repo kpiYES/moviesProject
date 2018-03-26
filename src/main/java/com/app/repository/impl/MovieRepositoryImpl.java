@@ -52,7 +52,7 @@ public class MovieRepositoryImpl implements MovieRepository {
         try (Connection connection = DBManager.getConnect();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            preparedStatement.setInt(1, genre.getId());
+            preparedStatement.setLong(1, genre.getId());
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
 
