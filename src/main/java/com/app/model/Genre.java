@@ -9,10 +9,11 @@ public class Genre {
     public Genre() {
     }
 
-    public Genre(int id,String typeOfGenre) {
-        this.id=id;
+    public Genre(int id, String typeOfGenre) {
+        this.id = id;
         this.typeOfGenre = typeOfGenre;
     }
+
 
     public int getId() {
         return id;

@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface GenreService {
     List<Genre> getListOfGenre();
+
     int addGenre(Genre genre);
+
     int deleteGenre(Genre genre);
 }

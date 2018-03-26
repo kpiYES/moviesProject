@@ -15,10 +15,9 @@ import java.util.List;
 public class MovieRepositoryImpl implements MovieRepository {
 
 
-
     @Override
     public List<Movie> getMovieList() {
-        String query= " SELECT * FROM moviesproject.movie ORDER BY movie.title";
+        String query = " SELECT * FROM moviesproject.movie ORDER BY movie.title";
         List<Movie> movies = new ArrayList<>();
 
         try (Connection connection = DBManager.getConnect();
@@ -48,12 +47,12 @@ public class MovieRepositoryImpl implements MovieRepository {
         String query = "SELECT m.* " +
                 "FROM moviesproject.movie m INNER JOIN moviesproject.movie_genre g " +
                 "ON m.id = g.movie_id " +
-                "WHERE g.genre_id = ?"+
+                "WHERE g.genre_id = ?" +
                 " ORDER BY m.title";
         try (Connection connection = DBManager.getConnect();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-           preparedStatement.setInt(1,genre.getId());
+            preparedStatement.setInt(1, genre.getId());
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
 
@@ -64,7 +63,7 @@ public class MovieRepositoryImpl implements MovieRepository {
                 String describtion = resultSet.getString("describtion");
                 String image = resultSet.getString("image");
 
-                movies.add(new Movie(id,director_id,title,runtime,describtion,image));
+                movies.add(new Movie(id, director_id, title, runtime, describtion, image));
             }
 
         } catch (SQLException e) {

@@ -14,9 +14,9 @@ import java.util.List;
 
 public class GenreRepositoryImpl implements GenreRepository {
 
-    private static final String PUT_GENDER = "INSERT INTO moviesproject.genre VALUES (NULL,?)";
-    private static final String GET_ALL_GENDERS = "SELECT * FROM moviesproject.genre ORDER BY type_of_genre";
-    private static final String DELETE_GENDER = "DELETE FROM moviesproject.genre WHERE type_of_genre = ?";
+    private static final String PUT_GENER = "INSERT INTO moviesproject.genre VALUES (NULL,?)";
+    private static final String GET_ALL_GENERS = "SELECT * FROM moviesproject.genre ORDER BY type_of_genre";
+    private static final String DELETE_GENER = "DELETE FROM moviesproject.genre WHERE type_of_genre = ?";
 
     @Override
     public List<Genre> getAll() {
@@ -24,7 +24,7 @@ public class GenreRepositoryImpl implements GenreRepository {
         List<Genre> genres = new ArrayList<>();
 
         try (Connection connection = DBManager.getConnect();
-             PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_GENDERS)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_GENERS)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -42,7 +42,7 @@ public class GenreRepositoryImpl implements GenreRepository {
         int i;
 
         try (Connection connection = DBManager.getConnect();
-             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_GENDER)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(PUT_GENER)) {
 
             preparedStatement.setString(1, genre.getTypeOfGenre());
 
@@ -59,7 +59,7 @@ public class GenreRepositoryImpl implements GenreRepository {
         int i;
 
         try (Connection connection = DBManager.getConnect();
-             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_GENDER)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_GENER)) {
 
             preparedStatement.setString(1, genre.getTypeOfGenre());
 

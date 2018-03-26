@@ -87,7 +87,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
 //        if name != null
 
 //        ***
-        int id = 0;
+        int id;
         try (Connection connection = DBManager.getConnect();
              PreparedStatement preparedStatement = connection.prepareStatement(updateRow)) {
 
@@ -105,7 +105,6 @@ public class DirectorRepositoryImpl implements DirectorRepository {
 // to confirm success
         return id;
     }
-
 
 
 }

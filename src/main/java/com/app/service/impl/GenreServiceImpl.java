@@ -22,7 +22,6 @@ public class GenreServiceImpl implements GenreService {
     @Override
     public int addGenre(Genre genre) {
         return genreRepository.putGenre(genre);
-
     }
 
     @Override

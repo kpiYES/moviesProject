@@ -23,5 +23,20 @@ public class DirectorServiceImpl implements DirectorService {
         return directorRepository.getDirectorList();
     }
 
+    @Override
+    public int addDirector(Director director) {
+        return directorRepository.putDirector(director);
+    }
+
+    @Override
+    public int deleteDirector(Director director) {
+        return directorRepository.deleteDirector(director);
+    }
+
+    @Override
+    public int updateDirector(Director director) {
+        return directorRepository.updateDirector(director);
+    }
+
 
 }

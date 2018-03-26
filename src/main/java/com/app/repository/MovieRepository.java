@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface MovieRepository {
     List<Movie> getMovieList();
+
     List<Movie> getMovieListByGenre(Genre genre);
 }

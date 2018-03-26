@@ -1,4 +1,4 @@
-body{
+body {
 
     background-color: antiquewhite;
     box-sizing: border-box;
@@ -15,4 +15,20 @@ body{
     border-radius: 15px;
     padding: 20px;
     padding-left: 100px;
+}
+
+.header {
+    height: 20%;
+    text-align: center;
+}
+
+.leftForm {
+    float: left;
+    width: 15%;
+}
+
+.rightForm {
+    float: left;
+    width: 350px;
+
 }

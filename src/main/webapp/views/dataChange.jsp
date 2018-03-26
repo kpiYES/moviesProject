@@ -13,29 +13,14 @@
 </head>
 <body>
 
-<div>
-<h1 class="text_centre"> WELCOME! </h1>
-</div>
+
+<jsp:include page="../WEB-INF/jspf/headerDataChange.jsp"/>
+<%--<div>--%>
+<%--<h1 class="text_centre"> WELCOME! </h1>--%>
+<%--</div>--%>
 
 
-
-<div>
-    <p> Fill out this form, if yot want to add new genre </p>
-    <form method="post" action="dispatcher">
-        <input type="text" placeholder="Genre" name="genre_add" size="20">
-        <input type="submit" value="Add">
-    </form>
-</div>
-
-<div>
-    <p>Fill out this form, if yot want to delete genre</p>
-    <form method="post" action="dispatcher">
-        <input type="text" placeholder="Genre" name="genre_delete" size="20">
-        <input type="submit" value="Add">
-    </form>
-</div>
-
-
+<jsp:include page="../WEB-INF/jspf/leftSideDataChange.jsp"/>
 
 
 </body>
