@@ -5,9 +5,9 @@ import com.app.model.Genre;
 import java.util.List;
 
 public interface GenreService {
-    List<Genre> getListOfGenre();
+    List<Genre> getAll();
 
-    int addGenre(Genre genre);
+    Genre create(Genre genre);
 
-    int deleteGenre(Genre genre);
+    void remove(Genre genre);
 }

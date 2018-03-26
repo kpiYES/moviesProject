@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import com.app.exception.UnsupportedCommandException;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,12 +15,11 @@ public class CommandHelper {
         commandsMap.put("AddGenre", new AddGenreCommand());
     }
 
-
     public Command chooseCommand(HttpServletRequest request) {
-
-        Command command;
-
-        return command = commandsMap.get(request.getParameter("command"));
+        final String commandSignature = request.getParameter("command");
+        if (!commandsMap.containsKey(commandSignature)) {
+            throw new UnsupportedCommandException(commandSignature);
+        }
+        return commandsMap.get(commandSignature);
     }
-
 }

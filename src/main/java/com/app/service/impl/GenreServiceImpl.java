@@ -4,10 +4,12 @@ import com.app.model.Genre;
 import com.app.repository.GenreRepository;
 import com.app.repository.impl.GenreRepositoryImpl;
 import com.app.service.GenreService;
+import com.app.util.Assert;
 
 import java.util.List;
 
 public class GenreServiceImpl implements GenreService {
+
     private GenreRepository genreRepository;
 
     public GenreServiceImpl() {
@@ -15,17 +17,19 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public List<Genre> getListOfGenre() {
+    public List<Genre> getAll() {
         return genreRepository.getAll();
     }
 
     @Override
-    public int addGenre(Genre genre) {
-        return genreRepository.putGenre(genre);
+    public Genre create(Genre genre) {
+        Assert.notNull(genre, "genre must not be null.");
+        return genreRepository.create(genre);
     }
 
     @Override
-    public int deleteGenre(Genre genre) {
-        return genreRepository.removeGenre(genre);
+    public void remove(Genre genre) {
+        Assert.notNull(genre, "genre must not be null.");
+        genreRepository.remove(genre);
     }
 }
