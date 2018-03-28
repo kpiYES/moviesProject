@@ -20,7 +20,7 @@
     <div>
         <p> Fill out this form, if yot want to add new genre </p>
         <form method="post" action="/dispatcher">
-            <input type="text" placeholder="Genre" name="genre_add" size="20">
+            <input type="text" placeholder="Genre" name="genre_type" size="20">
             <input type="submit" value="Add">
         </form>
     </div>

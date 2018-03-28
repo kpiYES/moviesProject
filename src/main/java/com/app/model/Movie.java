@@ -2,8 +2,8 @@ package com.app.model;
 
 public class Movie {
 
-    private int id;
-    private int director_id;
+    private Long id;
+    private Long director_id;
     private String title;
     private int runtime;
     private String describtion;
@@ -12,7 +12,7 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(int id ,int director_id,String title, int runtime, String describtion, String image) {
+    public Movie(Long id, Long director_id, String title, int runtime, String describtion, String image) {
         this.id = id;
         this.director_id = director_id;
         this.title = title;
@@ -21,19 +21,19 @@ public class Movie {
         this.image = image;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getDirector_id() {
+    public Long getDirector_id() {
         return director_id;
     }
 
-    public void setDirector_id(int director_id) {
+    public void setDirector_id(Long director_id) {
         this.director_id = director_id;
     }
 
@@ -87,8 +87,8 @@ public class Movie {
 
     @Override
     public int hashCode() {
-        int result = getId();
-        result = 31 * result + getDirector_id();
+        int result = Math.toIntExact(getId());
+        result = 31 * result + Math.toIntExact(getDirector_id());
         result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
         result = 31 * result + getRuntime();
         result = 31 * result + (getDescribtion() != null ? getDescribtion().hashCode() : 0);

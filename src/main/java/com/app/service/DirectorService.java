@@ -5,11 +5,11 @@ import com.app.model.Director;
 import java.util.List;
 
 public interface DirectorService {
-    List<Director> getListOfDirectors();
+    List<Director> getAll();
 
-    int addDirector(Director director);
+    Director create(Director director);
 
-    int deleteDirector(Director director);
+    void remove(Director director);
 
-    int updateDirector(Director director);
+    Director update(Director director);
 }

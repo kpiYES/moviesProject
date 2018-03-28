@@ -5,6 +5,7 @@ import com.app.model.Director;
 import com.app.repository.DirectorRepository;
 import com.app.repository.impl.DirectorRepositoryImpl;
 import com.app.service.DirectorService;
+import com.app.util.Assert;
 
 import java.util.List;
 
@@ -18,24 +19,27 @@ public class DirectorServiceImpl implements DirectorService {
     }
 
     @Override
-    public List<Director> getListOfDirectors() {
+    public List<Director> getAll() {
 
-        return directorRepository.getDirectorList();
+        return directorRepository.getAll();
     }
 
     @Override
-    public int addDirector(Director director) {
-        return directorRepository.putDirector(director);
+    public Director create(Director director) {
+        Assert.notNull(director, "director must not be null.");
+        return directorRepository.create(director);
     }
 
     @Override
-    public int deleteDirector(Director director) {
-        return directorRepository.deleteDirector(director);
+    public void remove(Director director) {
+        Assert.notNull(director, "director must not be null.");
+        directorRepository.remove(director);
     }
 
     @Override
-    public int updateDirector(Director director) {
-        return directorRepository.updateDirector(director);
+    public Director update(Director director) {
+        Assert.notNull(director, "director must not be null.");
+        return directorRepository.update(director);
     }
 
 

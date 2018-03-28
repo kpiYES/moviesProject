@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface DirectorRepository {
 
-    List<Director> getDirectorList();
+    List<Director> getAll();
 
-    int putDirector(Director director);
+    Director create(Director director);
 
-    int deleteDirector(Director director);
+    void remove(Director director);
 
-    int updateDirector(Director director);
+    Director update(Director director);
 }

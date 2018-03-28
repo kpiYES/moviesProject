@@ -33,7 +33,7 @@ public class ServletDispatcher extends HttpServlet {
 
         CommandHelper commandHelper = new CommandHelper();
         Command command = commandHelper.chooseCommand(req);
-        String result = command.execute(req, resp);
+        command.execute(req, resp);
 
 //        System.out.println(req.getParameter("genre_add"));
 //        System.out.println(req.getParameter("genre_delete"));

@@ -15,97 +15,99 @@ import java.util.List;
 
 public class DirectorRepositoryImpl implements DirectorRepository {
 
-    private static final String getAllDirectors = "SELECT *  FROM moviesproject.director ORDER BY name";
-    private static final String updateRow = "UPDATE moviesproject.director SET day_of_birth = ?, image = ? WHERE name = ?";
-    private static final String deleteRow = "DELETE FROM moviesproject.director WHERE name = ?";
-    private static final String putRow = "INSERT INTO moviesproject.director VALUES (NULL ,?,?,?)";
+    private static final String GET_ALL_QUERY = "SELECT id, name, day_of_birth, image  FROM moviesproject.director ORDER BY name";
+    private static final String CREATE_QUERY = "INSERT INTO moviesproject.director VALUES (NULL ,?,?,?)";
+    private static final String UPDATE_QUERY = "UPDATE moviesproject.director SET day_of_birth = ?, image = ? WHERE name = ?";
+    private static final String REMOVE_QUERY = "DELETE FROM moviesproject.director WHERE name = ?";
+
 
     @Override
-    public List<Director> getDirectorList() {
+    public List<Director> getAll() {
 
         List<Director> directors = new ArrayList<>();
 
         try (Connection connection = DBManager.getConnect();
-             PreparedStatement preparedStatement = connection.prepareStatement(getAllDirectors)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_QUERY);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
 
-            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
+                Long id = resultSet.getLong("id");
                 String directorName = resultSet.getString("name");
                 LocalDate dayOfBirth = resultSet.getObject("day_of_birth", LocalDate.class);
                 String image = resultSet.getString("image");
                 directors.add(new Director(id, directorName, dayOfBirth, image));
             }
+            return directors;
         } catch (SQLException e) {
             throw new RuntimeException("Couldn't get list with values from column 'directors'", e);
         }
-        return directors;
+
     }
 
-    public int putDirector(Director director) {
-//        ***
-//        if name != null
+    public Director create(Director director) {
 
-//        ***
-        int id = 0;
         try (Connection connection = DBManager.getConnect();
-             PreparedStatement preparedStatement = connection.prepareStatement(putRow)) {
+             PreparedStatement preparedStatement = getCreateStatement(connection, director);
+             ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
+
+            if (resultSet.next()) {
+                long generatedId = resultSet.getLong(1);
+                director.setId(generatedId);
+            }
+            return director;
+        } catch (SQLException e) {
+            throw new RuntimeException("Couldn't put director to 'director' table", e);
+        }
+    }
+
+
+    public void remove(Director director) {
+        try (Connection connection = DBManager.getConnect();
+             PreparedStatement preparedStatement = connection.prepareStatement(REMOVE_QUERY)) {
 
             preparedStatement.setString(1, director.getName());
-            preparedStatement.setObject(2, director.getDayOfBirth());
-            preparedStatement.setString(3, director.getImage());
-            id = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException("Couldn't put new row in 'directors'", e);
+            throw new RuntimeException("Couldn't remove director from table 'directors'", e);
         }
-
-
-// to confirm success
-        return id;
     }
 
+    public Director update(Director director) {
 
-    public int deleteDirector(Director director) {
-        int id;
         try (Connection connection = DBManager.getConnect();
-             PreparedStatement preparedStatement = connection.prepareStatement(deleteRow)) {
+             PreparedStatement preparedStatement = getUpdateStatement(connection, director);
+             ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
 
-            preparedStatement.setString(1, director.getName());
-
-            id = preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Couldn't delete any row in 'directors'", e);
-        }
-
-        return id;
-    }
-
-    public int updateDirector(Director director) {
-//        ***
-//        if name != null
-
-//        ***
-        int id;
-        try (Connection connection = DBManager.getConnect();
-             PreparedStatement preparedStatement = connection.prepareStatement(updateRow)) {
-
-
-            preparedStatement.setObject(1, director.getDayOfBirth());
-            preparedStatement.setString(2, director.getImage());
-            preparedStatement.setString(3, director.getName());
-            id = preparedStatement.executeUpdate();
+            if (resultSet.next()) {
+                long generatedId = resultSet.getLong(1);
+                director.setId(generatedId);
+            }
+            return director;
 
         } catch (SQLException e) {
-            throw new RuntimeException("Couldn't update any row in 'directors'", e);
+            throw new RuntimeException("Couldn't update director form table 'director'", e);
         }
-
-
-// to confirm success
-        return id;
     }
 
+    private PreparedStatement getCreateStatement(Connection connection, Director director) throws SQLException {
 
+        PreparedStatement preparedStatement = connection.prepareStatement(CREATE_QUERY);
+        preparedStatement.setString(1, director.getName());
+        preparedStatement.setObject(2, director.getDayOfBirth());
+        preparedStatement.setString(3, director.getImage());
+        return preparedStatement;
+    }
+
+    private PreparedStatement getUpdateStatement(Connection connection, Director director) throws SQLException {
+
+        PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY);
+        preparedStatement.setObject(1, director.getDayOfBirth());
+        preparedStatement.setString(2, director.getImage());
+        preparedStatement.setString(3, director.getName());
+        return preparedStatement;
+
+
+    }
 }
 

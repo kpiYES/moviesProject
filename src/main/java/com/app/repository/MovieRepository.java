@@ -6,7 +6,11 @@ import com.app.model.Movie;
 import java.util.List;
 
 public interface MovieRepository {
-    List<Movie> getMovieList();
+    List<Movie> getAll();
 
-    List<Movie> getMovieListByGenre(Genre genre);
+    List<Movie> getByGenre(Genre genre);
+
+    Movie create(Movie movie, String directorsName);
+
+    void remove(Movie movie);
 }

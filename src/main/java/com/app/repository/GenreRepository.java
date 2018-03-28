@@ -7,7 +7,8 @@ import java.util.List;
 public interface GenreRepository {
     List<Genre> getAll();
 
-    int putGenre(Genre genre);
+    Genre create(Genre genre);
 
-    int removeGenre(Genre genre);
+    void remove(Genre genre);
 }
+

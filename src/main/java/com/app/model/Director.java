@@ -4,27 +4,29 @@ import java.time.LocalDate;
 
 public class Director {
 
-    private int id;
+    private Long id;
     private String name;
     private LocalDate dayOfBirth;
     private String image;
 
-    public Director(){
-    };
+    public Director() {
+    }
 
 
-    public Director(int id, String name, LocalDate dayOfBirth, String imagine) {
+
+
+    public Director(Long id, String name, LocalDate dayOfBirth, String imagine) {
         this.id = id;
         this.name = name;
         this.dayOfBirth = dayOfBirth;
         this.image = image;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -68,7 +70,7 @@ public class Director {
 
     @Override
     public int hashCode() {
-        int result = getId();
+        int result = Math.toIntExact(getId());
         result = 31 * result + (getName() != null ? getName().hashCode() : 0);
         result = 31 * result + (getDayOfBirth() != null ? getDayOfBirth().hashCode() : 0);
         result = 31 * result + (getImage() != null ? getImage().hashCode() : 0);
