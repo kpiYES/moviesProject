@@ -2,8 +2,8 @@ package com.app.service.impl;
 
 
 import com.app.model.Director;
-import com.app.repository.DirectorRepository;
-import com.app.repository.impl.DirectorRepositoryImpl;
+import com.app.repository.DataBase.DirectorRepository;
+import com.app.repository.DataBase.impl.DirectorRepositoryImpl;
 import com.app.service.DirectorService;
 import com.app.util.Assert;
 

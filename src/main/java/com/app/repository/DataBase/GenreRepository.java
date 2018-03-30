@@ -1,4 +1,4 @@
-package com.app.repository;
+package com.app.repository.DataBase;
 
 import com.app.model.Genre;
 

@@ -11,8 +11,21 @@ public class CommandHelper {
     private Map<String, Command> commandsMap = new HashMap<>();
 
     CommandHelper() {
-        commandsMap.put("DeleteGenre", new RemoveGenreCommand());
-        commandsMap.put("AddGenre", new CreateGenreCommand());
+        commandsMap.put("GetAllGenre", new GetAllGenreCommand());
+        commandsMap.put("Create genre", new CreateGenreCommand());
+        commandsMap.put("Remove genre", new RemoveGenreCommand());
+
+        commandsMap.put("GetAllDirector", new GetAllDirectorCommand());
+        commandsMap.put("Create director", new CreateDirectorCommand());
+        commandsMap.put("Remove director", new RemoveDirectorCommand());
+        commandsMap.put("Update director", new UpdateDirectorCommand());
+
+        commandsMap.put("GetAllMovie", new GetAllMovieCommand());
+        commandsMap.put("Create movie", new CreateMovieCommand());
+        commandsMap.put("Remove movie", new RemoveMovieCommand());
+        commandsMap.put("Update movie", new UpdateMovieCommand());
+
+
     }
 
 

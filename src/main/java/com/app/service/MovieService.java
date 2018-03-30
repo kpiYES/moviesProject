@@ -10,7 +10,9 @@ public interface MovieService {
 
     List<Movie> getByGenre(Genre genre);
 
-    Movie create(Movie movie, String directorsName);
+    Movie create(Movie movie);
 
     void remove(Movie movie);
+
+    Movie update(Movie movie);
 }

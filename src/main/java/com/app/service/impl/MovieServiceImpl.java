@@ -2,8 +2,8 @@ package com.app.service.impl;
 
 import com.app.model.Genre;
 import com.app.model.Movie;
-import com.app.repository.MovieRepository;
-import com.app.repository.impl.MovieRepositoryImpl;
+import com.app.repository.DataBase.MovieRepository;
+import com.app.repository.DataBase.impl.MovieRepositoryImpl;
 import com.app.service.MovieService;
 import com.app.util.Assert;
 
@@ -30,15 +30,21 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie create(Movie movie, String directorsName) {
+    public Movie create(Movie movie) {
         Assert.notNull(movie, "movie must not be null.");
-        return movieRepository.create(movie, directorsName);
+        return movieRepository.create(movie);
     }
 
     @Override
     public void remove(Movie movie) {
         Assert.notNull(movie, "movie must not be null.");
         movieRepository.remove(movie);
+    }
+
+    @Override
+    public Movie update(Movie movie) {
+        Assert.notNull(movie, "movie must not be null.");
+       return movieRepository.update((movie));
     }
 
 

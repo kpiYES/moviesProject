@@ -3,18 +3,30 @@ package com.app.controller;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 
 @WebServlet(urlPatterns = {"/dispatcher"})
+@MultipartConfig
 public class ServletDispatcher extends HttpServlet {
 
+    private static final String UPLOAD_LOCATION = "C:\\Users\\Misha\\IdeaProjects\\uploadLocation\\";
+private static final String NAME_OF_FILE = "image";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 
 //        if ("/".equals(req.getServletPath())) {
 //            System.out.println("qqqqqq");
@@ -30,6 +42,16 @@ public class ServletDispatcher extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+
+
+
+
+
+
+
+
 
         CommandHelper commandHelper = new CommandHelper();
         Command command = commandHelper.chooseCommand(req);

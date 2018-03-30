@@ -1,8 +1,8 @@
 package com.app.service.impl;
 
 import com.app.model.Genre;
-import com.app.repository.GenreRepository;
-import com.app.repository.impl.GenreRepositoryImpl;
+import com.app.repository.DataBase.GenreRepository;
+import com.app.repository.DataBase.impl.GenreRepositoryImpl;
 import com.app.service.GenreService;
 import com.app.util.Assert;
 

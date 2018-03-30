@@ -20,7 +20,8 @@ public class CreateGenreCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) {
 
         Genre genre = new Genre();
-        genre.setTypeOfGenre(request.getParameter("genre_type"));
+        genre.setTypeOfGenre(request.getParameter("type"));
+
         Genre createdGenre = genreService.create(genre);
         request.setAttribute("created_genre", createdGenre);
     }

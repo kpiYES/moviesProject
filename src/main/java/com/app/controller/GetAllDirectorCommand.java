@@ -6,20 +6,22 @@ import com.app.service.impl.DirectorServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
-public class RemoveDirectorCommand implements Command {
+public class GetAllDirectorCommand implements Command {
 
     private DirectorService directorService;
 
-    public RemoveDirectorCommand() {
+    GetAllDirectorCommand() {
         directorService = new DirectorServiceImpl();
     }
 
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        Director director = new Director();
-        director.setName(request.getParameter("director_name"));
 
-        directorService.remove(director);
+        List<Director> getAllDirector = directorService.getAll();
+        request.setAttribute("get_all_director", getAllDirector);
     }
 }
+

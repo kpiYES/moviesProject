@@ -1,8 +1,8 @@
-package com.app.repository.impl;
+package com.app.repository.DataBase.impl;
 
 
 import com.app.model.Genre;
-import com.app.repository.GenreRepository;
+import com.app.repository.DataBase.GenreRepository;
 import com.app.util.DBManager;
 
 import java.sql.Connection;

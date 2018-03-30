@@ -1,4 +1,4 @@
-package com.app.repository;
+package com.app.repository.DataBase;
 
 import com.app.model.Genre;
 import com.app.model.Movie;
@@ -10,7 +10,9 @@ public interface MovieRepository {
 
     List<Movie> getByGenre(Genre genre);
 
-    Movie create(Movie movie, String directorsName);
+    Movie create(Movie movie);
 
     void remove(Movie movie);
+
+    Movie update(Movie movie);
 }

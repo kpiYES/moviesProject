@@ -1,8 +1,8 @@
-package com.app.repository.impl;
+package com.app.repository.DataBase.impl;
 
 
 import com.app.model.Director;
-import com.app.repository.DirectorRepository;
+import com.app.repository.DataBase.DirectorRepository;
 import com.app.util.DBManager;
 
 import java.sql.Connection;

@@ -6,21 +6,21 @@ import com.app.service.impl.GenreServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
-public class RemoveGenreCommand implements Command {
+public class GetAllGenreCommand implements Command {
 
     private GenreService genreService;
 
-    RemoveGenreCommand() {
+    GetAllGenreCommand() {
         genreService = new GenreServiceImpl();
     }
 
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        Genre genre = new Genre();
-        genre.setTypeOfGenre(request.getParameter("genre_type"));
 
-        genreService.remove(genre);
+        List<Genre> getAllGenre = genreService.getAll();
+        request.setAttribute("get_all_genre", getAllGenre);
     }
 }
-
