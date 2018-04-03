@@ -13,8 +13,7 @@ import java.nio.file.StandardCopyOption;
 public class ServerRepository {
 
 
-    public String saveToServer(HttpServletRequest req, String pathToStore, String partOfFileName, String type) {
-
+    public String uploadToServer(HttpServletRequest req, String pathToStore, String partOfFileName, String type) {
         try {
             Part filePart = req.getPart(type);
             String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
@@ -32,4 +31,18 @@ public class ServerRepository {
             throw new RuntimeException("Couldn't save file", e);
         }
     }
+
+    public void removeFile( String pathToFile){
+        File file = new File(pathToFile);
+        System.out.println(file.delete());
+    }
+
+
+
+
+
 }
+
+
+
+

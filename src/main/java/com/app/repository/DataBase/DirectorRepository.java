@@ -13,4 +13,8 @@ public interface DirectorRepository {
     void remove(Director director);
 
     Director update(Director director);
+
+    Director getByName(String name);
+
+    boolean checkOnExist(String name);
 }

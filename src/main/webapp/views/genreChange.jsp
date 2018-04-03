@@ -20,6 +20,7 @@
 <jsp:include page="../WEB-INF/jspf/leftSideDataChange.jsp"/>
 
 <div class="rightForm">
+    <p> <%=request.getAttribute("result")%></p>
     <div>
         <p> Fill out this form, if yot want to add new genre </p>
         <form method="post" action="/dispatcher">

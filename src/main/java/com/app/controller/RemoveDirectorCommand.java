@@ -1,6 +1,7 @@
 package com.app.controller;
 
 import com.app.model.Director;
+import com.app.repository.Server.ServerRepository;
 import com.app.service.DirectorService;
 import com.app.service.impl.DirectorServiceImpl;
 
@@ -17,9 +18,12 @@ public class RemoveDirectorCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        Director director = new Director();
-        director.setName(request.getParameter("director_name"));
 
-        directorService.remove(director);
+        Director directorForRemoving = directorService.getByName(request.getParameter("name"));
+        directorService.remove(directorForRemoving);
+        ServerRepository serverRepository = new ServerRepository();
+        serverRepository.removeFile(directorForRemoving.getImage());
+        request.setAttribute("result", "Genre has successfully removed!");
+        request.setAttribute("jsp", "views/directorChange.jsp");
     }
 }

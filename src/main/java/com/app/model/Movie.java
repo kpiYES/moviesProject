@@ -1,13 +1,16 @@
 package com.app.model;
 
+import java.util.Set;
+
 public class Movie {
 
     private Long id;
     private Long director_id;
     private String title;
     private int runtime;
-    private String describtion;
+    private String description;
     private String image;
+    private Set<Genre> genres;
 
     public Movie() {
     }
@@ -17,7 +20,7 @@ public class Movie {
         this.director_id = director_id;
         this.title = title;
         this.runtime = runtime;
-        this.describtion = describtion;
+        this.description = description;
         this.image = image;
     }
 
@@ -53,12 +56,12 @@ public class Movie {
         this.runtime = runtime;
     }
 
-    public String getDescribtion() {
-        return describtion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescribtion(String describtion) {
-        this.describtion = describtion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImage() {
@@ -69,42 +72,12 @@ public class Movie {
         this.image = image;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Movie movie = (Movie) o;
-
-        if (getId() != movie.getId()) return false;
-        if (getDirector_id() != movie.getDirector_id()) return false;
-        if (getRuntime() != movie.getRuntime()) return false;
-        if (getTitle() != null ? !getTitle().equals(movie.getTitle()) : movie.getTitle() != null) return false;
-        if (getDescribtion() != null ? !getDescribtion().equals(movie.getDescribtion()) : movie.getDescribtion() != null)
-            return false;
-        return getImage() != null ? getImage().equals(movie.getImage()) : movie.getImage() == null;
+    public Set<Genre> getGenres() {
+        return genres ;
     }
 
-    @Override
-    public int hashCode() {
-        int result = Math.toIntExact(getId());
-        result = 31 * result + Math.toIntExact(getDirector_id());
-        result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
-        result = 31 * result + getRuntime();
-        result = 31 * result + (getDescribtion() != null ? getDescribtion().hashCode() : 0);
-        result = 31 * result + (getImage() != null ? getImage().hashCode() : 0);
-        return result;
+    public void setGenres(Set<Genre> typesOfGenres) {
+        this.genres = typesOfGenres;
     }
 
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "id=" + id +
-                ", director_id=" + director_id +
-                ", title='" + title + '\'' +
-                ", runtime=" + runtime +
-                ", describtion='" + describtion + '\'' +
-                ", image='" + image + '\'' +
-                '}';
-    }
 }

@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 public class CreateDirectorCommand implements Command {
 
-    static final private String PATH_TO_STORE_OF_IMAGES = "C:\\Users\\Misha\\IdeaProjects\\Store\\Directors\\Images\\";
+    final private String PATH_TO_STORE_OF_IMAGES = "C:\\Users\\Misha\\IdeaProjects\\uploadLocation\\Directors\\Images\\";
     private DirectorService directorService;
 
     CreateDirectorCommand() {
@@ -22,10 +22,8 @@ public class CreateDirectorCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) {
 
 
-
         ServerRepository serverRepository = new ServerRepository();
-        String image = serverRepository.saveToServer(request, PATH_TO_STORE_OF_IMAGES, request.getParameter("name"), request.getParameter("image"));
-
+        String image = serverRepository.uploadToServer(request, PATH_TO_STORE_OF_IMAGES, request.getParameter("name"), "image");
 
         Director director = new Director();
         director.setName(request.getParameter("name"));
@@ -33,7 +31,12 @@ public class CreateDirectorCommand implements Command {
         director.setImage(image);
 
         Director createdDirector = directorService.create(director);
+
         request.setAttribute("created_director", createdDirector);
+        request.setAttribute("result", "New director has successfully added!");
+        request.setAttribute("jsp", "views/directorChange.jsp");
+
+
     }
 }
 

@@ -18,9 +18,10 @@ public class RemoveGenreCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
         Genre genre = new Genre();
-        genre.setTypeOfGenre(request.getParameter("genre_type"));
-
+        genre.setTypeOfGenre(request.getParameter("type"));
         genreService.remove(genre);
+        request.setAttribute("result", "Genre has successfully removed!");
+        request.setAttribute("jsp", "views/genreChange.jsp");
     }
 }
 

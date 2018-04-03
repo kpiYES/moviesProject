@@ -1,6 +1,8 @@
 package com.app.controller;
 
 
+import com.app.util.BackPath;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -22,18 +24,10 @@ import java.nio.file.StandardCopyOption;
 @MultipartConfig
 public class ServletDispatcher extends HttpServlet {
 
-    private static final String UPLOAD_LOCATION = "C:\\Users\\Misha\\IdeaProjects\\uploadLocation\\";
-private static final String NAME_OF_FILE = "image";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
-//        if ("/".equals(req.getServletPath())) {
-//            System.out.println("qqqqqq");
-
-
-//            List<Genre> genreList = genreService.getListOfGenre();
-//            req.setAttribute("genreList", genreList);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/dataChange.jsp");
         requestDispatcher.forward(req, resp);
@@ -44,18 +38,18 @@ private static final String NAME_OF_FILE = "image";
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-
-
-
-
-
-
-
-
-
         CommandHelper commandHelper = new CommandHelper();
         Command command = commandHelper.chooseCommand(req);
         command.execute(req, resp);
+
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher((String)req.getAttribute("jsp"));
+        requestDispatcher.forward(req,resp);
+
+//        RequestDispatcher requestDispatcher = req.getRequestDispatcher(BackPath.findLastJSP(req));
+//        System.out.println(BackPath.findLastJSP(req));
+//        requestDispatcher.forward(req,resp);
+
+
 
 //        System.out.println(req.getParameter("genre_add"));
 //        System.out.println(req.getParameter("genre_delete"));

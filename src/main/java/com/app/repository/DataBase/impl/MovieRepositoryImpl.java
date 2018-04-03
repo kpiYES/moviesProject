@@ -86,10 +86,6 @@ public class MovieRepositoryImpl implements MovieRepository {
                 long generatedId = resultSet.getLong(1);
                 movie.setId(generatedId);
 
-//                add director_id to movie
-//                or fill out field director_id at the beginning on the page
-
-
             }
             return movie;
         } catch (SQLException e) {
@@ -136,12 +132,13 @@ public class MovieRepositoryImpl implements MovieRepository {
 
     private PreparedStatement getCreateStatement(Connection connection, Movie movie) throws SQLException {
 
-        PreparedStatement preparedStatement = connection.prepareStatement(CREATE_QUERY);
+        PreparedStatement preparedStatement = connection.prepareStatement(CREATE_QUERY, PreparedStatement.RETURN_GENERATED_KEYS);
         preparedStatement.setLong(1, movie.getDirector_id());
         preparedStatement.setString(2, movie.getTitle());
         preparedStatement.setInt(3, movie.getRuntime());
-        preparedStatement.setString(4, movie.getDescribtion());
+        preparedStatement.setString(4, movie.getDescription());
         preparedStatement.setString(5, movie.getImage());
+        preparedStatement.executeUpdate();
         return preparedStatement;
     }
 
@@ -150,7 +147,7 @@ public class MovieRepositoryImpl implements MovieRepository {
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY);
         preparedStatement.setLong(1, movie.getDirector_id());
         preparedStatement.setInt(2, movie.getRuntime());
-        preparedStatement.setString(3, movie.getDescribtion());
+        preparedStatement.setString(3, movie.getDescription());
         preparedStatement.setString(4, movie.getImage());
         preparedStatement.setString(5, movie.getTitle());
         return preparedStatement;

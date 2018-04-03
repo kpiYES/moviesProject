@@ -34,12 +34,25 @@ public class DirectorServiceImpl implements DirectorService {
     public void remove(Director director) {
         Assert.notNull(director, "director must not be null.");
         directorRepository.remove(director);
+
     }
 
     @Override
     public Director update(Director director) {
         Assert.notNull(director, "director must not be null.");
         return directorRepository.update(director);
+    }
+
+    @Override
+    public Director getByName(String name) {
+        Assert.notNull(name, "director must not be null.");
+        return directorRepository.getByName(name);
+    }
+
+    @Override
+    public boolean checkOnExist(String name) {
+        Assert.notNull(name, "director must not be null.");
+        return directorRepository.checkOnExist(name);
     }
 
 
