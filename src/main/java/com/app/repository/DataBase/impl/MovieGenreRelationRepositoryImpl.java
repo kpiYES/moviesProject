@@ -46,20 +46,6 @@ public class MovieGenreRelationRepositoryImpl implements MovieGenreRelationRepos
         }
     }
 
-    @Override
-    public void update(Movie movie, Genre genre) {
-
-        try (Connection connection = DBManager.getConnect();
-             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY)) {
-
-            preparedStatement.setLong(1, genre.getId());
-            preparedStatement.setLong(2, movie.getId());
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Couldn't remove genre from 'genre' table", e);
-        }
-    }
 
 
 //    private PreparedStatement getCreateStatement(Connection connection,Movie movie, Genre genre) throws SQLException {

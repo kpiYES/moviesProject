@@ -6,15 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
 <div class="header">
-    <img alt="Place for logo" name="logo">
-    </img>
+    <img alt="Place for logo" name="logo"></img>
 
     <div>
         <form class="search_form" name="search_form" method="post">
-            <img src="../../images/movieroll.jpg" width="30" height="30">
+            <img src="images/movieroll.jpg" width="30" height="30">
             <input type="text" name="search_String" value="" size="100"/>
             <input type="submit" value="Search" name="search_button"/>
             <select name="search_option">

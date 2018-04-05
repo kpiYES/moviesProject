@@ -34,7 +34,7 @@ public class CreateDirectorCommand implements Command {
 
         request.setAttribute("created_director", createdDirector);
         request.setAttribute("result", "New director has successfully added!");
-        request.setAttribute("jsp", "views/directorChange.jsp");
+        request.setAttribute("jsp", "directorChange.jsp");
 
 
     }

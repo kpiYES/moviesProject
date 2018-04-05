@@ -16,7 +16,6 @@ public class MovieServiceImpl implements MovieService {
         movieRepository = new MovieRepositoryImpl();
     }
 
-
     @Override
     public List<Movie> getAll() {
 
@@ -45,6 +44,12 @@ public class MovieServiceImpl implements MovieService {
     public Movie update(Movie movie) {
         Assert.notNull(movie, "movie must not be null.");
        return movieRepository.update((movie));
+    }
+
+    @Override
+    public Movie getByTitle(String title) {
+        Assert.notNull(title, "title must not be null");
+        return movieRepository.getByTitle(title);
     }
 
 

@@ -2,6 +2,7 @@ package com.app.service.impl;
 
 
 import com.app.model.Director;
+import com.app.model.Movie;
 import com.app.repository.DataBase.DirectorRepository;
 import com.app.repository.DataBase.impl.DirectorRepositoryImpl;
 import com.app.service.DirectorService;
@@ -47,6 +48,12 @@ public class DirectorServiceImpl implements DirectorService {
     public Director getByName(String name) {
         Assert.notNull(name, "director must not be null.");
         return directorRepository.getByName(name);
+    }
+
+    @Override
+    public Director getByMovie(Movie movie) {
+        Assert.notNull(movie, "movie must not be null.");
+        return directorRepository.getByMovie(movie);
     }
 
     @Override

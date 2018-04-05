@@ -1,6 +1,7 @@
 package com.app.service.impl;
 
 import com.app.model.Genre;
+import com.app.model.Movie;
 import com.app.repository.DataBase.GenreRepository;
 import com.app.repository.DataBase.impl.GenreRepositoryImpl;
 import com.app.service.GenreService;
@@ -34,14 +35,20 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public Genre getByTitle(String title) {
-        Assert.notNull(title, "title must not be null.");
-        return genreRepository.getByTitle(title);
+    public Genre getByType(String type) {
+        Assert.notNull(type, "Type must not be null.");
+        return genreRepository.getByType(type);
     }
 
     @Override
     public boolean checkOnExist(String typeOfGenre) {
-        Assert.notNull(typeOfGenre, "String typeOfGenre must not be null");
+        Assert.notNull(typeOfGenre, "TypeOfGenre must not be null");
         return genreRepository.checkOnExist(typeOfGenre);
+    }
+
+    @Override
+    public Set<Genre> getSetByMovie(Movie movie) {
+        Assert.notNull(movie, "Movie must not be null");
+        return genreRepository.getSetByMovie(movie);
     }
 }

@@ -21,7 +21,7 @@ public class RemoveGenreCommand implements Command {
         genre.setTypeOfGenre(request.getParameter("type"));
         genreService.remove(genre);
         request.setAttribute("result", "Genre has successfully removed!");
-        request.setAttribute("jsp", "views/genreChange.jsp");
+        request.setAttribute("jsp", "genreChange.jsp");
     }
 }
 

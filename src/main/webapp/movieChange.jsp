@@ -5,6 +5,7 @@
   Time: 17:22
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -13,8 +14,8 @@
 <body>
 
 
-<jsp:include page="../WEB-INF/jspf/headerDataChange.jsp"/>
-<jsp:include page="../WEB-INF/jspf/leftSideDataChange.jsp"/>
+<jsp:include page="headerDataChange.jsp"/>
+<jsp:include page="leftSideDataChange.jsp"/>
 
 
 <div class="rightForm">
@@ -34,7 +35,7 @@
 <div class="rightForm">
     <form method="post" action="/dispatcher">
         <p>Fill out this form, if yot want to delete movie</p>
-        <p>Title: <input type="text" placeholder="Calvin Ford" name="name" size="30"></p>
+        <p>Title: <input type="text" placeholder="Calvin Ford" name="title" size="30"></p>
         <input type="submit" name="command" value="Remove movie">
     </form>
 </div>

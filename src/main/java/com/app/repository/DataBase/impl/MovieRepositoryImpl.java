@@ -15,15 +15,15 @@ import java.util.List;
 public class MovieRepositoryImpl implements MovieRepository {
 
     private static final String CREATE_QUERY = "INSERT INTO moviesproject.movie  VALUES (NULL,? ,? ,? ,? ,? )";
-    private static final String GET_ALL_QUERY = "SELECT id, director_id, title, runtime, describtion, image FROM moviesproject.movie ORDER BY movie.title";
+    private static final String GET_ALL_QUERY = "SELECT id, director_id, title, runtime, description, image FROM moviesproject.movie ORDER BY movie.title";
     private static final String REMOVE_QUERY = "DELETE FROM moviesproject.movie WHERE title = ?";
-    private static final String UPDATE_QUERY = "UPDATE moviesproject.movie SET director_id = ?, runtime = ?, describtion = ?, image = ? WHERE title = ?";
-    private static final String GET_BY_GENRE_QUERY = "SELECT m.id, m.director_id, m.title, m.runtime, m.describtion, m.image " +
+    private static final String UPDATE_QUERY = "UPDATE moviesproject.movie SET director_id = ?, runtime = ?, description = ?, image = ? WHERE title = ?";
+    private static final String GET_BY_GENRE_QUERY = "SELECT m.id, m.director_id, m.title, m.runtime, m.description, m.image " +
             "FROM moviesproject.movie m INNER JOIN moviesproject.movie_genre g " +
             "ON m.id = g.movie_id " +
             "WHERE g.genre_id = ?" +
             " ORDER BY m.title";
-    private static final String GET_BY_AUTOR_QUERY = "";
+    private static final String GET_BY_TITLE_QUERY = "SELECT id, director_id, title, runtime, description, image FROM moviesproject.movie WHERE title=?";
 
     @Override
     public List<Movie> getAll() {
@@ -39,7 +39,7 @@ public class MovieRepositoryImpl implements MovieRepository {
                 Long director_id = resultSet.getLong("director_id");
                 String title = resultSet.getString("title");
                 int runtime = resultSet.getInt("runtime");
-                String describtion = resultSet.getString("describtion");
+                String describtion = resultSet.getString("description");
                 String image = resultSet.getString("image");
 
                 movies.add(new Movie(id, director_id, title, runtime, describtion, image));
@@ -65,7 +65,7 @@ public class MovieRepositoryImpl implements MovieRepository {
                 Long director_id = resultSet.getLong("director_id");
                 String title = resultSet.getString("title");
                 int runtime = resultSet.getInt("runtime");
-                String describtion = resultSet.getString("describtion");
+                String describtion = resultSet.getString("description");
                 String image = resultSet.getString("image");
 
                 movies.add(new Movie(id, director_id, title, runtime, describtion, image));
@@ -108,13 +108,10 @@ public class MovieRepositoryImpl implements MovieRepository {
     public Movie update(Movie movie) {
 
         try (Connection connection = DBManager.getConnect();
-             PreparedStatement preparedStatement = getUpdateStatement(connection, movie);
-             ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
+             PreparedStatement preparedStatement = getUpdateStatement(connection, movie)) {
 
-            if (resultSet.next()) {
-                long generatedId = resultSet.getLong(1);
-                movie.setId(generatedId);
-            }
+            preparedStatement.executeUpdate();
+
             return movie;
 
         } catch (SQLException e) {
@@ -122,6 +119,24 @@ public class MovieRepositoryImpl implements MovieRepository {
         }
     }
 
+    public Movie getByTitle(String title) {
+        Movie movie = new Movie();
+        try (Connection connection = DBManager.getConnect();
+             PreparedStatement preparedStatement = getByNameStatement(connection, title);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            if (resultSet.next()) {
+                movie.setId(resultSet.getLong("id"));
+                movie.setDirector_id(resultSet.getLong("director_id"));
+                movie.setTitle(resultSet.getString("title"));
+                movie.setRuntime(resultSet.getInt("runtime"));
+                movie.setDescription(resultSet.getString("description"));
+                movie.setImage(resultSet.getString("image"));
+            }
+            return movie;
+        } catch (SQLException e) {
+            throw new RuntimeException("Couldn't update movie form table 'movie'", e);
+        }
+    }
 
     private PreparedStatement getByGenreStatement(Connection connection, Genre genre) throws SQLException {
 
@@ -150,6 +165,12 @@ public class MovieRepositoryImpl implements MovieRepository {
         preparedStatement.setString(3, movie.getDescription());
         preparedStatement.setString(4, movie.getImage());
         preparedStatement.setString(5, movie.getTitle());
+        return preparedStatement;
+    }
+
+    private PreparedStatement getByNameStatement(Connection connection, String title) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_TITLE_QUERY);
+        preparedStatement.setString(1, title);
         return preparedStatement;
     }
 

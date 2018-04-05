@@ -15,4 +15,6 @@ public interface MovieService {
     void remove(Movie movie);
 
     Movie update(Movie movie);
+
+    Movie getByTitle(String title);
 }

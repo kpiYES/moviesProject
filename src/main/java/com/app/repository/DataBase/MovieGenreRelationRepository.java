@@ -6,5 +6,4 @@ import com.app.model.Movie;
 public interface MovieGenreRelationRepository {
     void create(Movie movie, Genre genre);
     void remove(Movie movie);
-    void update(Movie movie, Genre genre);
 }

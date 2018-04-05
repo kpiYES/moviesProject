@@ -24,6 +24,6 @@ public class CreateGenreCommand implements Command {
 
         Genre createdGenre = genreService.create(genre);
         request.setAttribute("result", "New genre has successfully added!");
-        request.setAttribute("jsp", "views/genreChange.jsp");
+        request.setAttribute("jsp", "genreChange.jsp");
     }
 }

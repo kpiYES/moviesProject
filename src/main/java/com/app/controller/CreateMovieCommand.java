@@ -40,7 +40,7 @@ public class CreateMovieCommand implements Command {
 
         for (String type : setOfTypesOfGenre) {
             if (genreService.checkOnExist(type)) {
-                genreSet.add(genreService.getByTitle(type));
+                genreSet.add(genreService.getByType(type));
 //               если не существует - сообщить, что не существует
 //               если существует - продолжить
             }
@@ -50,10 +50,8 @@ public class CreateMovieCommand implements Command {
         Director director;
         DirectorService directorService = new DirectorServiceImpl();
         if (directorService.checkOnExist(request.getParameter("name_of_director"))) {
-            System.out.println(directorService.checkOnExist(request.getParameter("name_of_director")));
             director = directorService.getByName(request.getParameter("name_of_director"));
-            System.out.println(director.getId());
-            System.out.println(director.getName());
+
 
             ServerRepository serverRepository = new ServerRepository();
             String image = serverRepository.uploadToServer(request, PATH_TO_STORE_OF_IMAGES, request.getParameter("title"), "image");
@@ -63,8 +61,8 @@ public class CreateMovieCommand implements Command {
             movie.setDirector_id(director.getId());
             movie.setTitle(request.getParameter("title"));
             movie.setRuntime(Integer.parseInt(request.getParameter("runtime")));
-            movie.setDescription("description");
-            movie.setImage("image");
+            movie.setDescription(description);
+            movie.setImage(image);
             movie.setGenres(genreSet);
             Movie createdMovie = movieService.create(movie);
 
@@ -79,7 +77,7 @@ public class CreateMovieCommand implements Command {
 
             request.setAttribute("created_movie", createdMovie);
             request.setAttribute("result", "New movie has successfully added!");
-            request.setAttribute("jsp", "views/movieChange.jsp");
+            request.setAttribute("jsp", "movieChange.jsp");
         }
     }
 }

@@ -29,8 +29,14 @@ public class ServletDispatcher extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/dataChange.jsp");
+        CommandHelper commandHelper = new CommandHelper();
+        Command command = commandHelper.chooseCommand(req);
+        command.execute(req, resp);
+
+
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher((String) req.getAttribute("jsp"));
         requestDispatcher.forward(req, resp);
+
     }
 
 
@@ -45,41 +51,6 @@ public class ServletDispatcher extends HttpServlet {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher((String)req.getAttribute("jsp"));
         requestDispatcher.forward(req,resp);
 
-//        RequestDispatcher requestDispatcher = req.getRequestDispatcher(BackPath.findLastJSP(req));
-//        System.out.println(BackPath.findLastJSP(req));
-//        requestDispatcher.forward(req,resp);
-
-
-
-//        System.out.println(req.getParameter("genre_add"));
-//        System.out.println(req.getParameter("genre_delete"));
-//        System.out.println(req.getServletPath());
-//        if ("/dispatcher".equals(req.getServletPath()) && req.getParameter("genre_add") != null) {
-//            System.out.println("a");
-//            GenreService genreService = new GenreServiceImpl();
-//            String name = req.getParameter("genre_add");
-//            Genre genre = new Genre();
-//            genre.setTypeOfGenre(name);
-//            System.out.println(genre.getTypeOfGenre());
-//            int result = genreService.addGenre(genre);
-//            System.out.println(result);
-//            req.setAttribute("resultAdd", result);
-//            RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/genreChange.jsp");
-//            requestDispatcher.forward(req,resp);
-//        }
-//
-//        if ("/dispatcher".equals(req.getServletPath()) && req.getParameter("genre_delete") != null) {
-//            System.out.println("b");
-//            GenreService genreService = new GenreServiceImpl();
-//            String name = req.getParameter("genre_delete");
-//            Genre genre = new Genre();
-//            genre.setTypeOfGenre(name);
-//            int result = genreService.deleteGenre(genre);
-//            System.out.println(result);
-//            req.setAttribute("resultDelete", result);
-//            RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/genreChange.jsp");
-//            requestDispatcher.forward(req,resp);
-//        }
     }
 }
 

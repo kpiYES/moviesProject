@@ -15,4 +15,6 @@ public interface MovieRepository {
     void remove(Movie movie);
 
     Movie update(Movie movie);
+
+    Movie getByTitle(String title);
 }

@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: Misha
@@ -8,22 +7,25 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
-<link href="../css/dataChange.css" rel="stylesheet" type="text/css">
-<link href="../../css/mainStyle.css" rel="stylesheet" type="text/css">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
-<title>YourFavoriteMovies</title>
-
+<head>
+    <link href="css/dataChange.css" rel="stylesheet" type="text/css">
+    <link href="css/mainStyle.css" rel="stylesheet" type="text/css">
+    <title>YourFavoriteMovies</title>
+</head>
 
 <body>
-<jsp:include page="../WEB-INF/jspf/headerDataChange.jsp"/>
-<jsp:include page="../WEB-INF/jspf/leftSideDataChange.jsp"/>
+<jsp:include page="headerDataChange.jsp"/>
+<jsp:include page="leftSideDataChange.jsp"/>
 
 <div class="rightForm">
-    <p> <%=request.getAttribute("result")%></p>
+    <p><%=request.getAttribute("result")%>
+    </p>
     <div>
         <p> Fill out this form, if yot want to add new genre </p>
-        <form method="post" action="/dispatcher">
+        <form method="post" action="dispatcher">
             <input type="text" placeholder="Genre" name="type" size="20">
             <input type="submit" name="command" value="Create genre">
         </form>
@@ -31,7 +33,7 @@
 
     <div>
         <p>Fill out this form, if yot want to delete genre</p>
-        <form method="post" action="/dispatcher">
+        <form method="post" action="dispatcher">
             <input type="text" placeholder="Genre" name="type" size="20">
             <input type="submit" name="command" value="Remove genre">
         </form>

@@ -25,7 +25,9 @@ public class CommandHelper {
         commandsMap.put("Remove movie", new RemoveMovieCommand());
         commandsMap.put("Update movie", new UpdateMovieCommand());
 
-
+        commandsMap.put("To mainPage", new ToMainPageCommand());
+        commandsMap.put("To dataChange", new ToDataChangeCommand());
+        commandsMap.put("To mainMoviePage", new ToMainMoviePageCommand());
     }
 
 

@@ -6,7 +6,7 @@ body {
 
 .text_centre {
     color: midnightblue;
-    width: 200px;
+    width: 400px;
     padding: 15px;
     margin: auto;
 }
@@ -18,6 +18,10 @@ body {
     border: 5px midnightblue double;
 }
 
+.form {
+    float: left;
+    width: 350px;
+}
 
 
 

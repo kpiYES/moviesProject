@@ -30,6 +30,7 @@ public class UpdateDirectorCommand implements Command {
         Director directorForRemoving = directorService.getByName(request.getParameter("name"));
 
         Director director = new Director();
+        director.setId(directorForRemoving.getId());
         director.setName(request.getParameter("name"));
         director.setDayOfBirth(LocalDate.parse(request.getParameter("day_of_birth")));
         director.setImage(image);
@@ -40,7 +41,7 @@ public class UpdateDirectorCommand implements Command {
 
         request.setAttribute("updated_director", updatedDirector);
         request.setAttribute("result", "Director has successfully updated!");
-        request.setAttribute("jsp", "views/directorChange.jsp");
+        request.setAttribute("jsp", "directorChange.jsp");
     }
 }
 

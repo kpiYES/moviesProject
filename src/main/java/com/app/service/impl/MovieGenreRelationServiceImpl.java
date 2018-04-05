@@ -32,7 +32,7 @@ public class MovieGenreRelationServiceImpl implements MovieGenreRelationService 
     public void update(Movie movie, Genre genre) {
         Assert.notNull(movie, "movie must not be null");
         Assert.notNull(genre, "genre must not be null.");
-        mgRepository.update(movie,genre);
-
+        mgRepository.remove(movie);
+        mgRepository.create(movie,genre);
     }
 }

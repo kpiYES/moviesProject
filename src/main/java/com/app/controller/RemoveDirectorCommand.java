@@ -24,6 +24,6 @@ public class RemoveDirectorCommand implements Command {
         ServerRepository serverRepository = new ServerRepository();
         serverRepository.removeFile(directorForRemoving.getImage());
         request.setAttribute("result", "Genre has successfully removed!");
-        request.setAttribute("jsp", "views/directorChange.jsp");
+        request.setAttribute("jsp", "directorChange.jsp");
     }
 }

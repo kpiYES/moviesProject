@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>YourFavoriteMovies</title>
@@ -27,12 +27,29 @@
 </div>
 
 
-<div>
+
+
+<div  class="form">
+    <p> Entrance to the database editor</p>
     <form class="login" method="get" action='dispatcher'>
-        <input type="text" placeholder="Username" title="username" size="20">
-        <input type="submit" value="Submit">
+        <input type="hidden" name="command" value="To dataChange">
+        <input type="text" placeholder="Username" name="username" size="30">
+        <input type="submit" value="Submit" >
     </form>
 </div>
+
+
+<div  class="form">
+    <p> Entrance to using the website</p>
+    <form class="login" method="get" action='dispatcher'>
+        <input type="hidden" name="command" value="To mainPage">
+        <input type="text" placeholder="Username" name="username" size="30">
+        <input type="submit" value="Submit">
+
+    </form>
+</div>
+
+
 
 </body>
 </html>
