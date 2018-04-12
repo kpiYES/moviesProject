@@ -1,5 +1,6 @@
 package com.app.repository.DataBase.impl;
 
+import com.app.model.Director;
 import com.app.model.Genre;
 import com.app.model.Movie;
 import com.app.repository.DataBase.MovieRepository;
@@ -23,6 +24,7 @@ public class MovieRepositoryImpl implements MovieRepository {
             "ON m.id = g.movie_id " +
             "WHERE g.genre_id = ?" +
             " ORDER BY m.title";
+    private static final String GET_BY_DIRECTOR_QUERY = "SELECT id, director_id, title, runtime, description, image FROM moviesproject.movie WHERE director_id=?";
     private static final String GET_BY_TITLE_QUERY = "SELECT id, director_id, title, runtime, description, image FROM moviesproject.movie WHERE title=?";
 
     @Override
@@ -47,6 +49,31 @@ public class MovieRepositoryImpl implements MovieRepository {
             return movies;
         } catch (SQLException e) {
             throw new RuntimeException("Couldn't get list of movies  from table 'movie'", e);
+        }
+    }
+
+    @Override
+    public List<Movie> getByDirector(Director director) {
+        List<Movie> movies = new ArrayList<>();
+
+        try (Connection connection = DBManager.getConnect();
+             PreparedStatement preparedStatement = getByDirectorStatement(connection, director);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+
+                Long id = resultSet.getLong("id");
+                Long director_id = resultSet.getLong("director_id");
+                String title = resultSet.getString("title");
+                int runtime = resultSet.getInt("runtime");
+                String describtion = resultSet.getString("description");
+                String image = resultSet.getString("image");
+
+                movies.add(new Movie(id, director_id, title, runtime, describtion, image));
+            }
+            return movies;
+        } catch (SQLException e) {
+            throw new RuntimeException("Couldn't get list of movies by genre from table 'movie'", e);
         }
     }
 
@@ -142,6 +169,13 @@ public class MovieRepositoryImpl implements MovieRepository {
 
         PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_GENRE_QUERY);
         preparedStatement.setLong(1, genre.getId());
+        return preparedStatement;
+    }
+
+    private PreparedStatement getByDirectorStatement(Connection connection, Director director) throws SQLException {
+
+        PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_DIRECTOR_QUERY);
+        preparedStatement.setLong(1,director.getId());
         return preparedStatement;
     }
 

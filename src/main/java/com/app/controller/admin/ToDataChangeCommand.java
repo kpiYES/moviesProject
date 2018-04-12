@@ -1,4 +1,6 @@
-package com.app.controller;
+package com.app.controller.admin;
+
+import com.app.controller.Command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

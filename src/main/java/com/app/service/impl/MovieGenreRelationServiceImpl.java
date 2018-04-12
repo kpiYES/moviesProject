@@ -7,6 +7,9 @@ import com.app.repository.DataBase.impl.MovieGenreRelationRepositoryImpl;
 import com.app.service.MovieGenreRelationService;
 import com.app.util.Assert;
 
+import java.util.List;
+import java.util.Set;
+
 public class MovieGenreRelationServiceImpl implements MovieGenreRelationService {
 
     private MovieGenreRelationRepository mgRepository;
@@ -29,10 +32,14 @@ public class MovieGenreRelationServiceImpl implements MovieGenreRelationService 
     }
 
     @Override
-    public void update(Movie movie, Genre genre) {
+    public void update(Movie movie, Set<Genre> genres) {
+
         Assert.notNull(movie, "movie must not be null");
-        Assert.notNull(genre, "genre must not be null.");
         mgRepository.remove(movie);
-        mgRepository.create(movie,genre);
+        for(Genre genre:genres) {
+            Assert.notNull(genre, "genre must not be null.");
+            System.out.println(genre.getTypeOfGenre());
+            mgRepository.create(movie, genre);
+        }
     }
 }

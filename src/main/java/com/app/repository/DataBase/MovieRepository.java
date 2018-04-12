@@ -1,5 +1,6 @@
 package com.app.repository.DataBase;
 
+import com.app.model.Director;
 import com.app.model.Genre;
 import com.app.model.Movie;
 
@@ -7,6 +8,8 @@ import java.util.List;
 
 public interface MovieRepository {
     List<Movie> getAll();
+
+    List<Movie> getByDirector(Director director);
 
     List<Movie> getByGenre(Genre genre);
 
@@ -17,4 +20,5 @@ public interface MovieRepository {
     Movie update(Movie movie);
 
     Movie getByTitle(String title);
+
 }

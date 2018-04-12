@@ -9,10 +9,15 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-
+    <link href="css/mainStyle.css" rel="stylesheet" type="text/css">
+    <title>YourFavoriteMovies</title>
 </head>
 
-<div class="sidebar1">
+<body>
+
+
+
+<div style="width: 300px; float: left">
     <h4> Genres </h4>
 
 
@@ -21,31 +26,15 @@
                      scope="request"/>
         <c:forEach var="genre" items="${genreService.all}">
 
-            <c:set var="genreForMovie" value="${genre}" scope="session"/>
-
             <li>
-                <form action="dispatcher" method="post">
-                    <a href="#" onclick="parentNode.submit()">${genre.typeOfGenre}</a>
-                    <input type="hidden" name="command" value="To mainMoviePage">
-                </form>
+                    <a href="dispatcher?typeOfGenre=${genre.typeOfGenre}&command=To mainMoviePage"  >${genre.typeOfGenre}</a>
             </li>
         </c:forEach>
 
     </ul>
 
-    <%--<ul class="nav">--%>
-
-    <%--<%--%>
-    <%--List<Genre> genreList = (List<Genre>) request.getAttribute("genreList");--%>
-    <%--for (Genre genre : genreList) {%>--%>
-
-    <%--<li><a href="movie?genre_id= <%=genre.getId()%>"><%=genre.getTypeOfGenre() %>--%>
-    <%--</a></li>--%>
-    <%--<%}%>--%>
-
-
-    <%--</ul>--%>
 
 </div>
 
+</body>
 </html>

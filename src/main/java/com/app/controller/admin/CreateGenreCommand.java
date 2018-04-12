@@ -1,5 +1,6 @@
-package com.app.controller;
+package com.app.controller.admin;
 
+import com.app.controller.Command;
 import com.app.model.Genre;
 import com.app.service.GenreService;
 import com.app.service.impl.GenreServiceImpl;
@@ -11,7 +12,7 @@ public class CreateGenreCommand implements Command {
     private GenreService genreService;
 
 
-    CreateGenreCommand() {
+    public CreateGenreCommand() {
         genreService = new GenreServiceImpl();
     }
 

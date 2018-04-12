@@ -8,7 +8,7 @@ public class StringToSet {
 
     public static Set<String> splitStringOfGenresToSet(String genres) {
         Set<String> setOfTypesOfGenre;
-        String newString = genres.replaceAll("\\s", "").toLowerCase();
+        String newString = genres.replaceAll(",\\s", ",").toLowerCase();
         return setOfTypesOfGenre = new HashSet<>(Arrays.asList(newString.split(",")));
     }
 }

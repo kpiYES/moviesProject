@@ -1,5 +1,6 @@
-package com.app.controller;
+package com.app.controller.admin;
 
+import com.app.controller.Command;
 import com.app.model.Director;
 import com.app.model.Genre;
 import com.app.model.Movie;
@@ -26,7 +27,7 @@ public class CreateMovieCommand implements Command {
 
     private MovieService movieService;
 
-    CreateMovieCommand() {
+    public CreateMovieCommand() {
         movieService = new MovieServiceImpl();
     }
 
@@ -41,8 +42,7 @@ public class CreateMovieCommand implements Command {
         for (String type : setOfTypesOfGenre) {
             if (genreService.checkOnExist(type)) {
                 genreSet.add(genreService.getByType(type));
-//               если не существует - сообщить, что не существует
-//               если существует - продолжить
+//
             }
         }
 
@@ -68,11 +68,9 @@ public class CreateMovieCommand implements Command {
 
 
             MovieGenreRelationService movieGenreRelationService = new MovieGenreRelationServiceImpl();
-            for(Genre genre: genreSet) {
-                movieGenreRelationService.create(createdMovie,genre);
+            for (Genre genre : genreSet) {
+                movieGenreRelationService.create(createdMovie, genre);
             }
-
-
 
 
             request.setAttribute("created_movie", createdMovie);

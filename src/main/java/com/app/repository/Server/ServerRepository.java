@@ -23,9 +23,9 @@ public class ServerRepository {
 
            try( InputStream inputStream = filePart.getInputStream()) {
                Files.copy(inputStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-               System.out.println(file.toPath());
 
-               return file.toString();
+
+               return file.toString().replaceAll("\\\\","/");
            }
         } catch (IOException | ServletException e) {
             throw new RuntimeException("Couldn't save file", e);
@@ -33,15 +33,16 @@ public class ServerRepository {
     }
 
     public void removeFile( String pathToFile){
-        File file = new File(pathToFile);
-        System.out.println(file.delete());
+            File file = new File(pathToFile);
+            file.delete();
+        }
     }
 
 
 
 
 
-}
+
 
 
 

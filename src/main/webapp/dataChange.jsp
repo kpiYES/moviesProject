@@ -9,11 +9,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <link href="css/dataChange.css" rel="stylesheet" type="text/css">
     <title>YourFavoriteMovies</title>
 </head>
 <body>
 
-<@
+
 <jsp:include page="headerDataChange.jsp"/>
 
 

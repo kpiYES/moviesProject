@@ -5,10 +5,11 @@
   Time: 17:22
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <link href="css/dataChange.css" rel="stylesheet" type="text/css">
     <title>YourFavoriteMovies</title>
 </head>
 <body>
@@ -19,7 +20,7 @@
 
 <p> <%=request.getAttribute("result")%></p>
 <div class="rightForm">
-    <form method="post" action="/dispatcher" enctype="multipart/form-data">
+    <form method="post" action="dispatcher" enctype="multipart/form-data">
         <p> Fill out this form, if yot want to add new director </p>
         <p> All fields are necessary! </p>
         <p> Name: <input type="text" placeholder="Frank Darabont" name="name" size="30"></p>
@@ -30,7 +31,7 @@
 </div>
 
 <div class="rightForm">
-    <form method="post" action="/dispatcher">
+    <form method="post" action="dispatcher">
         <p>Fill out this form, if yot want to delete director</p>
         <p>Name: <input type="text" placeholder="Emilia Stone" name="name" size="30"></p>
         <input type="submit" name="command" value="Remove director">
@@ -38,7 +39,7 @@
 </div>
 
 <div class="rightForm">
-    <form method="post" action="/dispatcher" enctype="multipart/form-data">
+    <form method="post" action="dispatcher" enctype="multipart/form-data">
         <p> Fill out this form, if yot want to update director </p>
         <p> All fields are necessary! </p>
         <p> Name: <input type="text" placeholder="Jozef Patric" name="name" size="30"></p>

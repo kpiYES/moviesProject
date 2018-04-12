@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link href="css/dataChange.css" rel="stylesheet" type="text/css">
     <title>YourFavoriteMovies</title>
 </head>
 <body>
@@ -19,7 +20,7 @@
 
 
 <div class="rightForm">
-    <form method="post" action="/dispatcher" enctype="multipart/form-data">
+    <form method="post" action="dispatcher" enctype="multipart/form-data">
         <p> Fill out this form, if yot want to add new movie </p>
         <p> Fields "Name of director" and "Title" are necessary! </p>
         <p> Name of director: <input type="text" placeholder="Karl Ponsey" name="name_of_director" size="30"></p>
@@ -33,7 +34,7 @@
 </div>
 
 <div class="rightForm">
-    <form method="post" action="/dispatcher">
+    <form method="post" action="dispatcher">
         <p>Fill out this form, if yot want to delete movie</p>
         <p>Title: <input type="text" placeholder="Calvin Ford" name="title" size="30"></p>
         <input type="submit" name="command" value="Remove movie">
@@ -41,7 +42,7 @@
 </div>
 
 <div class="rightForm">
-    <form method="post" action="/dispatcher" enctype="multipart/form-data">
+    <form method="post" action="dispatcher" enctype="multipart/form-data">
         <p> Fill out this form, if yot want to update movie </p>
         <p> Fields "Director id" and "Title" are necessary! </p>
         <p> Name of director: <input type="text" placeholder="Max Zamaev" name="name_of_director" size="30"></p>

@@ -1,6 +1,7 @@
 package com.app.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Director {
 
@@ -8,11 +9,10 @@ public class Director {
     private String name;
     private LocalDate dayOfBirth;
     private String image;
+    private List<Movie> movieList;
 
     public Director() {
     }
-
-
 
 
     public Director(Long id, String name, LocalDate dayOfBirth, String imagine) {
@@ -52,6 +52,14 @@ public class Director {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public List<Movie> getMovies() {
+        return movieList;
+    }
+
+    public void setMovies(List<Movie> movieList) {
+        this.movieList = movieList;
     }
 
     @Override

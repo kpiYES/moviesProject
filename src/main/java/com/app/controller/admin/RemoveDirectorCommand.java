@@ -1,5 +1,6 @@
-package com.app.controller;
+package com.app.controller.admin;
 
+import com.app.controller.Command;
 import com.app.model.Director;
 import com.app.repository.Server.ServerRepository;
 import com.app.service.DirectorService;

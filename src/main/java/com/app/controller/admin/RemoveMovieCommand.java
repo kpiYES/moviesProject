@@ -1,5 +1,6 @@
-package com.app.controller;
+package com.app.controller.admin;
 
+import com.app.controller.Command;
 import com.app.model.Movie;
 import com.app.repository.Server.ServerRepository;
 import com.app.service.MovieGenreRelationService;
@@ -14,7 +15,7 @@ public class RemoveMovieCommand implements Command {
 
     private MovieService movieService;
 
-    RemoveMovieCommand() {
+    public RemoveMovieCommand() {
         movieService = new MovieServiceImpl();
     }
 
@@ -32,7 +33,6 @@ public class RemoveMovieCommand implements Command {
         ServerRepository serverRepository = new ServerRepository();
         serverRepository.removeFile(movie.getImage());
         serverRepository.removeFile(movie.getDescription());
-
 
 
         request.setAttribute("result", "Movie has successfully removed!");

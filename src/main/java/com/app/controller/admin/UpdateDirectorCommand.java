@@ -1,5 +1,6 @@
-package com.app.controller;
+package com.app.controller.admin;
 
+import com.app.controller.Command;
 import com.app.model.Director;
 import com.app.repository.Server.ServerRepository;
 import com.app.service.DirectorService;
@@ -9,14 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 
-public class CreateDirectorCommand implements Command {
+public class UpdateDirectorCommand implements Command {
 
     final private String PATH_TO_STORE_OF_IMAGES = "C:\\Users\\Misha\\IdeaProjects\\uploadLocation\\Directors\\Images\\";
     private DirectorService directorService;
 
-    CreateDirectorCommand() {
+
+    public UpdateDirectorCommand() {
         directorService = new DirectorServiceImpl();
     }
+
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -25,18 +28,23 @@ public class CreateDirectorCommand implements Command {
         ServerRepository serverRepository = new ServerRepository();
         String image = serverRepository.uploadToServer(request, PATH_TO_STORE_OF_IMAGES, request.getParameter("name"), "image");
 
+        Director directorForRemoving = directorService.getByName(request.getParameter("name"));
+
         Director director = new Director();
+        director.setId(directorForRemoving.getId());
         director.setName(request.getParameter("name"));
         director.setDayOfBirth(LocalDate.parse(request.getParameter("day_of_birth")));
         director.setImage(image);
 
-        Director createdDirector = directorService.create(director);
+        Director updatedDirector = directorService.update(director);
 
-        request.setAttribute("created_director", createdDirector);
-        request.setAttribute("result", "New director has successfully added!");
+        serverRepository.removeFile(directorForRemoving.getImage());
+
+        request.setAttribute("updated_director", updatedDirector);
+        request.setAttribute("result", "Director has successfully updated!");
         request.setAttribute("jsp", "directorChange.jsp");
-
-
     }
 }
+
+
 

@@ -9,8 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>YourFavoriteMovies</title>
     <link href="css/mainStyle.css" rel="stylesheet" type="text/css">
+    <title>YourFavoriteMovies</title>
 </head>
 <body>
 
@@ -18,32 +18,24 @@
 <jsp:include page="leftsideMainPage.jsp"/>
 
 
-<%--<jsp:useBean id="movieService" class="com.app.service.impl.MovieServiceImpl" type="com.app.service.MovieService"/>--%>
-<%--<jsp:useBean id="genre" class="com.app.service.impl.MovieServiceImpl">--%>
-<%--<jsp:setProperty name="genre" property="id" value="${param.genre_id}"/>--%>
-<%--<jsp:setProperty name="genre" property="typeOfGenre" value="${param.typeOfGenre}"/>--%>
+<div style="width: 1000px; float: left">
+    <h2 style="text-align: center">
+        ${requestScope.typeOfGenre}
+    </h2>
+        <ul style="column-count: 2; list-style-type: none">
+        <c:forEach var="movie" items="${requestScope.movieList}">
 
-<div>
-    <h4>
-        <c:out value="${requestScope.typeOfGenre}"/>
-    </h4>
-    <table cellpadding="30" style="font-size: 12px;">
-
-        <c:forEach var="movie" items="${param.movieList}">
-
-            <tr>
-                <td style="width: 400px; height: 100px;">
-                    <p style="color: midnightblue">"${movie.getTitle()}"</p>
-                        <%--<br><strong>Director</strong>${movie.getDirector().getName()}--%>
-                        <%--<br><strong>Genres</strong><c:forEach var="genre" items="${movie.getGenres()}">${genre.getTypeOfGenre()}</c:forEach>--%>
-                </td>
-
-
-            </tr>
+                <li style="margin-bottom: 30px">
+                <p style="font-size: larger">"${movie.getTitle()}"</p>
+                    <img src="dispatcher?path=${movie.getImage()}&command=Display file" width="120" height="140">
+                    <br><strong>Directed by </strong>${movie.getDirector().getName()}
+                        <p class="reference"><a href="dispatcher?title=${movie.getTitle()}&command=To descriptionMoviePage">
+                        Read description</a></p>
+                </li>
         </c:forEach>
+        </ul>
 
 
-    </table>
 
 
 </div>

@@ -9,8 +9,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
+<head>
+    <link href="css/mainStyle.css" rel="stylesheet" type="text/css">
+    <title>YourFavoriteMovies</title>
+</head>
+
 <div class="header">
-    <img alt="Place for logo" name="logo"></img>
+    <%--<img alt="Place for logo" name="logo"></img>--%>
 
     <div>
         <form class="search_form" name="search_form" method="post">

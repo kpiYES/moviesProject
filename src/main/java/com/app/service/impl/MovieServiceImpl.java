@@ -1,5 +1,6 @@
 package com.app.service.impl;
 
+import com.app.model.Director;
 import com.app.model.Genre;
 import com.app.model.Movie;
 import com.app.repository.DataBase.MovieRepository;
@@ -50,6 +51,12 @@ public class MovieServiceImpl implements MovieService {
     public Movie getByTitle(String title) {
         Assert.notNull(title, "title must not be null");
         return movieRepository.getByTitle(title);
+    }
+
+    @Override
+    public List<Movie> getByDirector(Director director) {
+        Assert.notNull(director,"director must not be null");
+        return movieRepository.getByDirector(director);
     }
 
 

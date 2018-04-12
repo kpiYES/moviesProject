@@ -1,5 +1,6 @@
 package com.app.service;
 
+import com.app.model.Director;
 import com.app.model.Genre;
 import com.app.model.Movie;
 
@@ -17,4 +18,6 @@ public interface MovieService {
     Movie update(Movie movie);
 
     Movie getByTitle(String title);
+
+    List<Movie> getByDirector(Director director);
 }

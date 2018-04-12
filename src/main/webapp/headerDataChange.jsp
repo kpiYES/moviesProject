@@ -11,6 +11,7 @@
 <html>
 <head>
     <link href="css/dataChange.css" rel="stylesheet" type="text/css">
+    <title>YourFavoriteMovies</title>
 </head>
 <body>
 

@@ -1,5 +1,6 @@
-package com.app.controller;
+package com.app.controller.admin;
 
+import com.app.controller.Command;
 import com.app.model.Genre;
 import com.app.service.GenreService;
 import com.app.service.impl.GenreServiceImpl;
@@ -11,10 +12,9 @@ public class RemoveGenreCommand implements Command {
 
     private GenreService genreService;
 
-    RemoveGenreCommand() {
+    public RemoveGenreCommand() {
         genreService = new GenreServiceImpl();
     }
-
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
         Genre genre = new Genre();

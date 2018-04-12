@@ -1,6 +1,6 @@
-package com.app.controller;
+package com.app.controller.user;
 
-import com.app.model.Director;
+import com.app.controller.Command;
 import com.app.model.Genre;
 import com.app.model.Movie;
 import com.app.service.DirectorService;
@@ -21,14 +21,14 @@ public class ToMainMoviePageCommand implements Command {
         GenreService genreService = new GenreServiceImpl();
         DirectorService directorService = new DirectorServiceImpl();
         MovieService movieService = new MovieServiceImpl();
-        Genre genreForMovie = (Genre) request.getSession().getAttribute("genreForMovie");
+
+        Genre genreForMovie = genreService.getByType(request.getParameter("typeOfGenre"));
         List<Movie> movieList = movieService.getByGenre(genreForMovie);
 
-        for(Movie movie : movieList){
-            movie.setGenres(genreService.getSetByMovie(movie));
+        for (Movie movie : movieList) {
             movie.setDirector(directorService.getByMovie(movie));
         }
-        System.out.println(genreForMovie.getTypeOfGenre());
+
         request.setAttribute("typeOfGenre", genreForMovie.getTypeOfGenre());
         request.setAttribute("movieList", movieList);
         request.setAttribute("jsp", "mainMoviePage.jsp");
