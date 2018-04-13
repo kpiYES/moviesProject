@@ -9,7 +9,6 @@ import java.io.*;
 public class DisplayFileCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println(request.getParameter("path"));
         File file = new File(request.getParameter("path"));
         String contentType = request.getSession().getServletContext().getMimeType(file.getName());
         response.reset();

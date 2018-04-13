@@ -120,6 +120,7 @@ public class MovieRepositoryImpl implements MovieRepository {
         }
     }
 
+    @Override
     public void remove(Movie movie) {
         try (Connection connection = DBManager.getConnect();
              PreparedStatement preparedStatement = connection.prepareStatement(REMOVE_QUERY)) {
@@ -132,10 +133,16 @@ public class MovieRepositoryImpl implements MovieRepository {
         }
     }
 
+    @Override
     public Movie update(Movie movie) {
 
         try (Connection connection = DBManager.getConnect();
-             PreparedStatement preparedStatement = getUpdateStatement(connection, movie)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY)) {
+            preparedStatement.setLong(1, movie.getDirector_id());
+            preparedStatement.setInt(2, movie.getRuntime());
+            preparedStatement.setString(3, movie.getDescription());
+            preparedStatement.setString(4, movie.getImage());
+            preparedStatement.setString(5, movie.getTitle());
 
             preparedStatement.executeUpdate();
 
@@ -146,10 +153,11 @@ public class MovieRepositoryImpl implements MovieRepository {
         }
     }
 
+    @Override
     public Movie getByTitle(String title) {
         Movie movie = new Movie();
         try (Connection connection = DBManager.getConnect();
-             PreparedStatement preparedStatement = getByNameStatement(connection, title);
+             PreparedStatement preparedStatement = getByTitleStatement(connection, title);
              ResultSet resultSet = preparedStatement.executeQuery()) {
             if (resultSet.next()) {
                 movie.setId(resultSet.getLong("id"));
@@ -175,7 +183,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     private PreparedStatement getByDirectorStatement(Connection connection, Director director) throws SQLException {
 
         PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_DIRECTOR_QUERY);
-        preparedStatement.setLong(1,director.getId());
+        preparedStatement.setLong(1, director.getId());
         return preparedStatement;
     }
 
@@ -191,18 +199,7 @@ public class MovieRepositoryImpl implements MovieRepository {
         return preparedStatement;
     }
 
-    private PreparedStatement getUpdateStatement(Connection connection, Movie movie) throws SQLException {
-
-        PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY);
-        preparedStatement.setLong(1, movie.getDirector_id());
-        preparedStatement.setInt(2, movie.getRuntime());
-        preparedStatement.setString(3, movie.getDescription());
-        preparedStatement.setString(4, movie.getImage());
-        preparedStatement.setString(5, movie.getTitle());
-        return preparedStatement;
-    }
-
-    private PreparedStatement getByNameStatement(Connection connection, String title) throws SQLException {
+    private PreparedStatement getByTitleStatement(Connection connection, String title) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_TITLE_QUERY);
         preparedStatement.setString(1, title);
         return preparedStatement;

@@ -13,7 +13,7 @@ import com.app.service.impl.DirectorServiceImpl;
 import com.app.service.impl.GenreServiceImpl;
 import com.app.service.impl.MovieGenreRelationServiceImpl;
 import com.app.service.impl.MovieServiceImpl;
-import com.app.util.StringToSet;
+import com.app.util.Genres;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,7 +33,7 @@ public class UpdateMovieCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
 
-        Set<String> setOfTypesOfGenre = StringToSet.splitStringOfGenresToSet(request.getParameter("genres"));
+        Set<String> setOfTypesOfGenre = Genres.splitToSet(request.getParameter("genres"));
         GenreService genreService = new GenreServiceImpl();
         Set<Genre> genreSet = new HashSet<>();
 
@@ -50,8 +50,8 @@ public class UpdateMovieCommand implements Command {
             director = directorService.getByName(request.getParameter("name_of_director"));
 
             ServerRepository serverRepository = new ServerRepository();
-            String image = serverRepository.uploadToServer(request, PATH_TO_STORE_OF_IMAGES, request.getParameter("title"), "image");
-            String description = serverRepository.uploadToServer(request, PATH_TO_STORE_OF_DESCRIPTIONS, request.getParameter("title"), "description");
+            String image = serverRepository.uploadFile(request, PATH_TO_STORE_OF_IMAGES, request.getParameter("title"), "image");
+            String description = serverRepository.uploadFile(request, PATH_TO_STORE_OF_DESCRIPTIONS, request.getParameter("title"), "description");
 
             Movie movieForRemoving = movieService.getByTitle(request.getParameter("title"));
 

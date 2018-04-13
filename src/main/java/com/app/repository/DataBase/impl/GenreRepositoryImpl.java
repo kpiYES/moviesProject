@@ -44,8 +44,8 @@ public class GenreRepositoryImpl implements GenreRepository {
         }
     }
 
+    @Override
     public Genre create(Genre genre) {
-
 
         try (Connection connection = DBManager.getConnect();
              PreparedStatement preparedStatement = getCreateStatement(connection, genre);
@@ -64,6 +64,7 @@ public class GenreRepositoryImpl implements GenreRepository {
         }
     }
 
+    @Override
     public void remove(Genre genre) {
 
         try (Connection connection = DBManager.getConnect();
@@ -117,7 +118,7 @@ public class GenreRepositoryImpl implements GenreRepository {
         }
     }
 
-
+    @Override
     public boolean checkOnExist(String typeOfGenre) {
         try (Connection connection = DBManager.getConnect();
              PreparedStatement preparedStatement = getCheckOnExistQueryStatement(connection, typeOfGenre);

@@ -35,9 +35,9 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public Genre getByType(String type) {
-        Assert.notNull(type, "Type must not be null.");
-        return genreRepository.getByType(type);
+    public Genre getByType(String typeOfGenre) {
+        Assert.notNull(typeOfGenre, "Type of genre must not be null.");
+        return genreRepository.getByType(typeOfGenre);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public Set<Genre> getSetByMovie(Movie movie) {
-        Assert.notNull(movie, "Movie must not be null");
+        Assert.notNull(movie.getId(), "Movie Id must not be null");
         return genreRepository.getSetByMovie(movie);
     }
 }

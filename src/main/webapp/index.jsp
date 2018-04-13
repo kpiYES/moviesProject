@@ -28,28 +28,39 @@
 </div>
 
 
-
-
-<div  class="form">
-    <p> Entrance to the database editor</p>
-    <form class="login" method="get" action='dispatcher'>
-        <input type="hidden" name="command" value="To dataChange">
-        <input type="text" placeholder="Username" name="username" size="30">
-        <input type="submit" value="Submit" >
-    </form>
+<div class="form">
+<form class="login" method="get" action="dispatcher">
+    <input type="text" placeholder="Username" name="username" size="30">
+    <input type="password" placeholder="********" name="password" size="30">
+    <select name="command" id="command">
+        <option disabled selected>Choose mode</option>
+        <option value="To dataChange">editor</option>
+        <option value="To mainPage">user</option>
+    </select>
+    <input type="submit" value="Submit">
+</form>
 </div>
 
 
-<div  class="form">
-    <p> Entrance to using the website</p>
-    <form class="login" method="get" action='dispatcher'>
-        <input type="hidden" name="command" value="To mainPage">
-        <input type="text" placeholder="Username" name="username" size="30">
-        <input type="submit" value="Submit">
+<%--<div  class="form">--%>
+<%--<p> Entrance to the database editor</p>--%>
+<%--<form class="login" method="get" action='dispatcher'>--%>
+<%--<input type="hidden" name="command" value="To dataChange">--%>
+<%--<input type="text" placeholder="Username" name="username" size="30">--%>
+<%--<input type="submit" value="Submit" >--%>
+<%--</form>--%>
+<%--</div>--%>
 
-    </form>
-</div>
 
+<%--<div  class="form">--%>
+<%--<p> Entrance to using the website</p>--%>
+<%--<form class="login" method="get" action='dispatcher'>--%>
+<%--<input type="hidden" name="command" value="To mainPage">--%>
+<%--<input type="text" placeholder="Username" name="username" size="30">--%>
+<%--<input type="submit" value="Submit">--%>
+
+<%--</form>--%>
+<%--</div>--%>
 
 
 </body>

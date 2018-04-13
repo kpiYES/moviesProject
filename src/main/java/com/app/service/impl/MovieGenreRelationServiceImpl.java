@@ -38,7 +38,6 @@ public class MovieGenreRelationServiceImpl implements MovieGenreRelationService 
         mgRepository.remove(movie);
         for(Genre genre:genres) {
             Assert.notNull(genre, "genre must not be null.");
-            System.out.println(genre.getTypeOfGenre());
             mgRepository.create(movie, genre);
         }
     }

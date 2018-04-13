@@ -6,7 +6,10 @@ import com.app.model.Movie;
 import com.app.repository.DataBase.DirectorRepository;
 import com.app.util.DBManager;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
     private static final String UPDATE_QUERY = "UPDATE moviesproject.director SET day_of_birth = ?, image = ? WHERE name = ?";
     private static final String REMOVE_QUERY = "DELETE FROM moviesproject.director WHERE name = ?";
     private static final String GET_BY_NAME_QUERY = "SELECT id, name, day_of_birth, image FROM moviesproject.director WHERE name = ?";
-    private static final String GET_BY_MOVIE_QUERY ="SELECT d.id, d.name, d.day_of_birth, d.image FROM moviesproject.director d INNER JOIN moviesproject.movie m ON d.id = m.director_id WHERE m.title = ?";
+    private static final String GET_BY_MOVIE_QUERY = "SELECT d.id, d.name, d.day_of_birth, d.image FROM moviesproject.director d INNER JOIN moviesproject.movie m ON d.id = m.director_id WHERE m.title = ?";
     private static final String CHECK_ON_EXIST_QUERY = "SELECT id FROM moviesproject.director WHERE name=?";
 
     @Override
@@ -44,6 +47,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
         }
     }
 
+    @Override
     public Director create(Director director) {
 
         try (Connection connection = DBManager.getConnect();
@@ -60,6 +64,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
         }
     }
 
+    @Override
     public void remove(Director director) {
         try (Connection connection = DBManager.getConnect();
              PreparedStatement preparedStatement = connection.prepareStatement(REMOVE_QUERY)) {
@@ -72,10 +77,14 @@ public class DirectorRepositoryImpl implements DirectorRepository {
         }
     }
 
+    @Override
     public Director update(Director director) {
 
         try (Connection connection = DBManager.getConnect();
-             PreparedStatement preparedStatement = getUpdateStatement(connection, director)){
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY)) {
+            preparedStatement.setObject(1, director.getDayOfBirth());
+            preparedStatement.setString(2, director.getImage());
+            preparedStatement.setString(3, director.getName());
             preparedStatement.executeUpdate();
 
             return director;
@@ -120,6 +129,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
         }
     }
 
+    @Override
     public boolean checkOnExist(String name) {
         try (Connection connection = DBManager.getConnect();
              PreparedStatement preparedStatement = getCheckOnExistQueryStatement(connection, name);
@@ -143,24 +153,15 @@ public class DirectorRepositoryImpl implements DirectorRepository {
         return preparedStatement;
     }
 
-    private PreparedStatement getUpdateStatement(Connection connection, Director director) throws SQLException {
-
-        PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY);
-        preparedStatement.setObject(1, director.getDayOfBirth());
-        preparedStatement.setString(2, director.getImage());
-        preparedStatement.setString(3, director.getName());
-        return preparedStatement;
-    }
-
     private PreparedStatement getByNameStatement(Connection connection, String name) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_NAME_QUERY);
         preparedStatement.setString(1, name);
         return preparedStatement;
     }
 
-    private PreparedStatement getByMovieStatement(Connection connection, Movie movie) throws SQLException{
+    private PreparedStatement getByMovieStatement(Connection connection, Movie movie) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_MOVIE_QUERY);
-        preparedStatement.setString(1,movie.getTitle());
+        preparedStatement.setString(1, movie.getTitle());
         return preparedStatement;
     }
 

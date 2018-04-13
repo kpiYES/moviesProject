@@ -24,7 +24,7 @@ public class CreateDirectorCommand implements Command {
 
 
         ServerRepository serverRepository = new ServerRepository();
-        String image = serverRepository.uploadToServer(request, PATH_TO_STORE_OF_IMAGES, request.getParameter("name"), "image");
+        String image = serverRepository.uploadFile(request, PATH_TO_STORE_OF_IMAGES, request.getParameter("name"), "image");
 
         Director director = new Director();
         director.setName(request.getParameter("name"));

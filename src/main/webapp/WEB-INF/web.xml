@@ -5,15 +5,4 @@
          version="3.1">
 
 
-    <!--<servlet>-->
-    <!--<servlet-name>ServletDispatcher</servlet-name>-->
-    <!--<servlet-class>com.app.controller.ServletDispatcherer</servlet-class>-->
-    <!--</servlet>-->
-
-    <!--<servlet-mapping>-->
-    <!--<servlet-name>ServletDispatcher</servlet-name>-->
-    <!--<url-pattern>/main</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-
 </web-app>

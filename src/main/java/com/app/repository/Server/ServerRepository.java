@@ -1,5 +1,7 @@
 package com.app.repository.Server;
 
+import com.app.util.FileName;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
@@ -13,13 +15,12 @@ import java.nio.file.StandardCopyOption;
 public class ServerRepository {
 
 
-    public String uploadToServer(HttpServletRequest req, String pathToStore, String partOfFileName, String type) {
+    public String uploadFile(HttpServletRequest req, String pathToStore, String partOfFileName, String type) {
         try {
             Part filePart = req.getPart(type);
             String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-            String[] partsOfName = fileName.split("\\.");
-            String extension = partsOfName[partsOfName.length - 1];
-            File file = File.createTempFile(partOfFileName, "." + extension, new File(pathToStore));
+            String mime = FileName.getMime(fileName);
+            File file = File.createTempFile(partOfFileName, "." + mime, new File(pathToStore));
 
            try( InputStream inputStream = filePart.getInputStream()) {
                Files.copy(inputStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
